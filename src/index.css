@@ -14,6 +14,7 @@ body {
   align-items: center;
 }
 .loading {
+  font-family: 'Playfair Display', serif;
   font-size: 25px;
   animation-name: loading-name;
   animation-duration: 1.5s;
@@ -49,7 +50,7 @@ body {
   text-decoration: none;
   animation: name 3s;
   font-family: 'Playfair Display', serif;
-  font-size: 4ch;
+  font-size: 6ch;
   font-weight: 500;
   cursor: default;
   color: #7B2CBF;
@@ -66,7 +67,7 @@ body {
 
 .principal-header:hover {
   letter-spacing: 2.5px;
-  font-size: 4ch;
+  font-size: 7ch;
   font-weight: 900;
   color: #C77DFF;
   transform: scale(1.2);
@@ -76,6 +77,8 @@ body {
 }
 
 .user-name {
+  font-family: 'Playfair Display', serif;
+  font-weight: 300;
   align-items: center;
   color: #7B2CBF;
   transition: 1s;
@@ -83,10 +86,23 @@ body {
 }
 
 .user-name:hover {
+  color: #C77DFF;
   text-shadow: 0 0 10px #7B2CBF,
-  
   0 0 20px #9D4EDD, 0 0 30px #C77DFF,
-  0 0 40px #7B2CBF, 0 0 50px #7B2CBF;
-  letter-spacing: 2.5px;
+  0 0 40px #9D4EDD, 0 0 60px #C77DFF;
+  letter-spacing: 1.5px;
   font-size: 2ch;
+}
+
+.list{
+  
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+}
+
+.list-links {
+  display: flex;
+  justify-content: space-between;
+  
 }
