@@ -44,7 +44,6 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
 }
 .principal-header {
   text-decoration: none;
@@ -82,16 +81,16 @@ body {
   align-items: center;
   color: #7B2CBF;
   transition: 1s;
-  font-size:small;
+  font-size: 20px;
 }
 
 .user-name:hover {
   color: #C77DFF;
-  text-shadow: 0 0 10px #7B2CBF,
+  text-shadow: 0 0 10px #C77DFF,
   0 0 20px #9D4EDD, 0 0 30px #C77DFF,
   0 0 40px #9D4EDD, 0 0 60px #C77DFF;
   letter-spacing: 1.5px;
-  font-size: 2ch;
+  /* font-size: 2ch; */
 }
 
 .list{
