@@ -40,7 +40,7 @@ export default class Login extends Component {
         {loadingAlert ? <Loading />
           : (
             <form>
-              <label htmlFor="cadname">
+              <label className="input-container" htmlFor="cadname">
                 Nome:
                 <input
                   name="loginName"
