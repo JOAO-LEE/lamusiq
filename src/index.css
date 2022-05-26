@@ -93,15 +93,27 @@ body {
   /* font-size: 2ch; */
 }
 
-.list{
-  
+.navbar {
+  width: 100px;
+  border: 1px solid red;
+  display: flex;
+}
+
+.list {
+  border: 1px solid white;
   list-style: none;
   display: flex;
   justify-content: space-between;
 }
 
 .list-links {
+  border: 1px solid white;
   display: flex;
   justify-content: space-between;
   
 }
+
+h3, h6 {
+  color: white
+}
+
