@@ -117,3 +117,35 @@ h3, h6 {
   color: white
 }
 
+.artist-name {
+  color: #C77DFF;
+}
+
+.song-name {
+  animation: song-name;
+  color: #9D4EDD;
+  transition: linear .5s;
+}
+
+.song-name:hover {
+  color: #C77DFF;
+  text-shadow: 0 0 40px #9D4EDD, 0 0 60px #C77DFF;
+}
+
+@keyframes song-name {
+  0% {
+    color: #240046;
+  }
+  50% {
+    color: #7B2CBF;
+  }
+  100% {
+    color: #240046;
+  }
+
+}
+.song-name::before {
+  animation-name: song-name;
+  animation-duration: 1s;
+}
+

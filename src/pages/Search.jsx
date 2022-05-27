@@ -32,12 +32,13 @@ export default class Search extends Component {
     const { inputSearch } = this.state;
     this.setState({ loadingAlert: true });
     const requisition = await searchAlbumsAPI(inputSearch);
+    // console.log(requisition);
     this.setState({
       artistName: inputSearch,
       arrayOfArtists: requisition,
       loadingAlert: false },
     this.searchButtonGrant);
-    this.setState({ inputSearch: '' });
+    this.setState({ inputSearch: '', searchButton: true });
   }
 
   render() {
@@ -70,7 +71,7 @@ export default class Search extends Component {
                 </button>
               </label>
             </form>)}
-        { !arrayOfArtists.length ? (<h3>Nenhum álbum foi encontrado</h3>)
+        {!arrayOfArtists.length ? (<h3>Nenhum álbum foi encontrado</h3>)
           : (<h3>{`Resultado de álbuns de: ${artistName}`}</h3>)}
         <ul>
           {arrayOfArtists.length && arrayOfArtists.map((artist) => (
@@ -80,12 +81,12 @@ export default class Search extends Component {
                 data-testid={ `link-to-album-${artist.collectionId}` }
                 to={ `/album/${artist.collectionId}` }
               >
-                { artist.collectionId }
+                { artist.collectionName }
               </Link>
               <img
                 key={ artist.artistId }
                 src={ artist.artworkUrl100 }
-                alt={ `Foto do artista ${artist.artistName}` }
+                alt={ `Capa do álbum ${artist.collectionName}` }
               />
               <h6>{artist.collectionName}</h6>
               <h6>{artist.artistName}</h6>
