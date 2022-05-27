@@ -32,7 +32,8 @@ export default class Search extends Component {
     const { inputSearch } = this.state;
     this.setState({ loadingAlert: true });
     const requisition = await searchAlbumsAPI(inputSearch);
-    // console.log(requisition);
+    console.log(requisition);
+
     this.setState({
       artistName: inputSearch,
       arrayOfArtists: requisition,
@@ -75,7 +76,6 @@ export default class Search extends Component {
           : (<h3>{`Resultado de álbuns de: ${artistName}`}</h3>)}
         <ul>
           {arrayOfArtists.length && arrayOfArtists.map((artist) => (
-            // <div>
             <li key={ artist.collectionId }>
               <Link
                 data-testid={ `link-to-album-${artist.collectionId}` }
@@ -90,9 +90,7 @@ export default class Search extends Component {
               />
               <h6>{artist.collectionName}</h6>
               <h6>{artist.artistName}</h6>
-
             </li>
-            // </div>
           ))}
         </ul>
       </div>

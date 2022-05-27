@@ -8,6 +8,7 @@ export default class Album extends Component {
   state = {
     artist: '',
     album: '',
+    coverArt: '',
     songPreviews: [],
   }
 
@@ -21,35 +22,39 @@ export default class Album extends Component {
     console.log(albumRequest);
     this.setState({ songPreviews: albumRequest,
       artist: albumRequest[0].artistName,
-      album: albumRequest[0].collectionName });
+      album: albumRequest[0].collectionName,
+      coverArt: albumRequest[0].artworkUrl100 });
   }
 
   render() {
-    // const { songPreviews } = this.state;
-    const { songPreviews, artist, album } = this.state;
-    console.log(songPreviews);
+    console.log(this.props);
+    const { songPreviews, artist, album, coverArt } = this.state;
+    // console.log(songPreviews);
     return (
       <div data-testid="page-album">
         <Header />
+        <img src={ coverArt } alt={ `Capa do álbum ${album}` } />
         <h2
           data-testid="artist-name"
           className="artist-name"
         >
           {artist}
         </h2>
-        <h2
+        <h1
           data-testid="album-name"
           className="artist-name"
         >
           {album}
-        </h2>
+        </h1>
         {songPreviews.filter((skipAlbum) => skipAlbum.kind).map(
           ({
+            trackId,
             collectionId,
             previewUrl,
             trackName,
           }) => (
             <MusicCard
+              song={ trackId }
               key={ collectionId }
               songName={ trackName }
               songSnippet={ previewUrl }

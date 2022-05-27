@@ -23,7 +23,9 @@ export default class Header extends Component {
     if (loadingAlert) return <Loading />;
     return (
       <header data-testid="header-component" className="header-container">
-        <h1 className="principal-header">lamusiq</h1>
+        <Link to="/">
+          <h1 className="principal-header">lamusiq</h1>
+        </Link>
         <p data-testid="header-user-name" className="user-name">
           {`Welcome, ${nameInput}!`}
         </p>

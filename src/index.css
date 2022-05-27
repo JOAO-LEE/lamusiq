@@ -149,3 +149,12 @@ h3, h6 {
   animation-duration: 1s;
 }
 
+.favorite-text {
+  color: #9D4EDD;
+  transition: 1s;
+}
+
+.favorite-text:hover {
+  color: #C77DFF;
+  text-shadow:0 0 20px #9D4EDD, 0 0 30px #C77DFF, 0 0 40px #9D4EDD, 0 0 60px #C77DFF;
+}
