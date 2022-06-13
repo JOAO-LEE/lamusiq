@@ -1,97 +1,87 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Header from './Header';
+import Carregando from './Loading';
 import searchAlbumsAPI from '../services/searchAlbumsAPI';
-import Loading from './Loading';
 
 export default class Search extends Component {
   state = {
-    inputSearch: '',
-    searchButton: true,
-    loadingAlert: false,
-    arrayOfArtists: [],
-    artistName: '',
+    search: '',
+    enablement: true,
+    loading: false,
+    foundAlbuns: [],
+    artist: '',
   }
 
-  handleChangeSearch = (event) => {
+  handleChange = (event) => {
     const { value } = event.target;
-    this.setState({ inputSearch: value }, this.searchButtonGrant);
+    this.setState({ search: value }, this.buttonEnablement);
   }
 
-  searchButtonGrant = () => {
-    const { inputSearch } = this.state;
-    const requiredLength = 2;
-    if (inputSearch.length >= requiredLength) {
-      this.setState({ searchButton: false });
+  buttonEnablement = () => {
+    const { search } = this.state;
+    if (search.length >= 2) {
+      this.setState({ enablement: false });
     } else {
-      this.setState({ searchButton: true });
+      this.setState({ enablement: true });
     }
   }
 
-  searchArtist = async () => {
-    const { inputSearch } = this.state;
-    this.setState({ loadingAlert: true });
-    const requisition = await searchAlbumsAPI(inputSearch);
-    console.log(requisition);
-
-    this.setState({
-      artistName: inputSearch,
-      arrayOfArtists: requisition,
-      loadingAlert: false },
-    this.searchButtonGrant);
-    this.setState({ inputSearch: '', searchButton: true });
+  searchAlbum = async () => {
+    const { search } = this.state;
+    this.setState({ loading: true });
+    const searchAlbuns = await searchAlbumsAPI(search);
+    console.log(searchAlbuns);
+    this.setState({ artist: search,
+      foundAlbuns: searchAlbuns,
+      loading: false,
+      search: '' }, this.buttonEnablement);
   }
 
   render() {
-    const { inputSearch, searchButton, loadingAlert,
-      arrayOfArtists, artistName } = this.state;
+    const { search, enablement, loading, foundAlbuns, artist } = this.state;
     return (
-      <div data-testid="page-search">
+      <div
+        data-testid="page-search"
+      >
         <Header />
-        { loadingAlert ? <Loading />
+        { loading ? <Carregando />
           : (
-            <form>
-              <label htmlFor="input-search">
-                <input
-                  onChange={ this.handleChangeSearch }
-                  id="input-search"
-                  data-testid="search-artist-input"
-                  value={ inputSearch }
-                  type="text"
-                  className="search-input"
-                  placeholder="Pesquise aqui!"
-                />
-                <button
-                  onClick={ this.searchArtist }
-                  data-testid="search-artist-button"
-                  id="button-search"
-                  type="button"
-                  disabled={ searchButton }
-                >
-                  Pesquisar
-                </button>
-              </label>
-            </form>)}
-        {!arrayOfArtists.length ? (<h3>Nenhum álbum foi encontrado</h3>)
-          : (<h3>{`Resultado de álbuns de: ${artistName}`}</h3>)}
-        <ul>
-          {arrayOfArtists.length && arrayOfArtists.map((artist) => (
-            <li key={ artist.collectionId }>
-              <Link
-                data-testid={ `link-to-album-${artist.collectionId}` }
-                to={ `/album/${artist.collectionId}` }
-              >
-                { artist.collectionName }
-              </Link>
-              <img
-                key={ artist.artistId }
-                src={ artist.artworkUrl100 }
-                alt={ `Capa do álbum ${artist.collectionName}` }
+            <form action="">
+              <input
+                onChange={ this.handleChange }
+                value={ search }
+                type="text"
+                data-testid="search-artist-input"
               />
-              <h6>{artist.collectionName}</h6>
-              <h6>{artist.artistName}</h6>
-            </li>
-          ))}
+              <button
+                onClick={ this.searchAlbum }
+                disabled={ enablement }
+                type="button"
+                data-testid="search-artist-button"
+              >
+                Pesquisar
+              </button>
+            </form>)}
+        {!foundAlbuns.length ? (<h3>Nenhum álbum foi encontrado</h3>)
+          : (<h3>{`Resultado de álbuns de: ${artist}`}</h3>)}
+        <ul>
+          {foundAlbuns.length && foundAlbuns
+            .map(({ collectionName, artistName, collectionId, artworkUrl100 }) => (
+              <li key={ collectionId }>
+                <img
+                  src={ artworkUrl100 }
+                  alt={ `Capa do álbum ${collectionName}, do artista ${artistName}` }
+                />
+                <Link
+                  to={ `/album/${collectionId}` }
+                  data-testid={ `link-to-album-${collectionId}` }
+                >
+                  {collectionName}
+                </Link>
+                <h4>{ artistName }</h4>
+              </li>
+            ))}
         </ul>
       </div>
     );

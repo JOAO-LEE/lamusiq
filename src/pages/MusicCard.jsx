@@ -1,67 +1,71 @@
 import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
-import Loading from './Loading';
 import { addSong } from '../services/favoriteSongsAPI';
+import Loading from './Loading';
 
 export default class MusicCard extends Component {
-state = {
-  loading: false,
-  favoriteOption: false,
+  state = {
+    loadingAlert: false,
+    favoriteOptions: false,
+  };
+
+  handleCheck = ({ target }) => {
+    this.setState(
+      {
+        [target.name]:
+          target.type === 'checkbox' ? target.checked : target.value,
+      },
+      this.favoriteAppliance,
+    );
+  };
+
+  favoriteAppliance = async () => {
+    this.setState({ loadingAlert: true });
+    await addSong(this.props);
+    this.setState({ loadingAlert: false });
+  };
+
+  componentDidMount = () => {
+    this.favoriteAppliance();
+  }
+
+  render() {
+    const { loadingAlert, favoriteOptions } = this.state;
+    const { songName, songSnippet, song } = this.props;
+
+    return (
+      <>
+        {loadingAlert && <Loading />}
+        <p>{songName}</p>
+        <audio
+          id="audio-tag"
+          src={ songSnippet }
+          data-testid="audio-component"
+          controls
+        >
+          <track kind="captions" />
+          O seu navegador não suporta o elemento
+          <code>audio</code>
+        </audio>
+
+        <label htmlFor="favorites">
+          Favoritar
+          <input
+            name="favorites"
+            checked={ favoriteOptions }
+            onChange={ this.handleCheck }
+            data-testid={ `checkbox-music-${song}` }
+            type="checkbox"
+            id="favorites"
+          />
+        </label>
+      </>
+    );
+  }
 }
 
-handleCheck = ({ target }) => {
-  const { checked } = target;
-  this.setState({ favoriteOption: checked }, this.favoriteAppliance);
-}
-
-favoriteAppliance = async () => {
-  const { song } = this.props;
-  this.setState({ loading: true });
-  await addSong(song);
-  this.setState({ loading: false });
-}
-
-render() {
-  const { loading, favoriteOption } = this.state;
-  const { songSnippet, songName, song } = this.props;
-  return (
-    <div>
-      { loading
-        ? (<Loading />)
-        : (
-          <>
-            <h2
-              className="song-name"
-            >
-              { songName }
-            </h2>
-            <audio data-testid="audio-component" src={ songSnippet } controls>
-              <track kind="captions" />
-              O seu navegador não suporta o elemento
-              {' '}
-              <code>audio</code>
-            </audio>
-            <label
-              className="favorite-text"
-              htmlFor="favorite-button"
-            >
-              Favorita
-              <input
-                checked={ favoriteOption }
-                onChange={ this.handleCheck }
-                id="favorite-button"
-                type="checkbox"
-                data-testid={ `checkbox-music-${song}` }
-              />
-            </label>
-          </>
-        )}
-    </div>
-  );
-}
-}
 MusicCard.propTypes = {
-  songSnippet: PropTypes.string.isRequired,
   songName: PropTypes.string.isRequired,
-  song: PropTypes.string.isRequired,
+  songSnippet: PropTypes.string.isRequired,
+  song: PropTypes.number.isRequired,
 };
