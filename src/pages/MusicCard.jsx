@@ -16,11 +16,14 @@ export default class MusicCard extends Component {
 
   favoriteAppliance = async () => {
     const { favoritChecks } = this.state;
-    const { music } = this.props;
+    const { music, update } = this.props;
     this.setState({ loadingAlert: true });
     if (favoritChecks) {
       await removeSong(music);
       this.setState({ favoritChecks: false });
+      if (update) {
+        update(music.trackId);
+      }
     } else {
       await addSong(music);
       this.setState({ favoritChecks: true });
@@ -30,17 +33,18 @@ export default class MusicCard extends Component {
 
   removeFav = () => {
     const { favoritedSongs } = this.state;
-    const { trackId } = this.props;
     this.setState({ loadingAlert: true });
-    if (favoritedSongs.some((id) => id.trackId === trackId)) {
-      this.setState({ favoritChecks: false, loadingAlert: false });
+    const { song } = this.props;
+    // console.log(trackId);
+    if (favoritedSongs.some((id) => id.trackId === song)) {
+      this.setState({ favoritChecks: true, loadingAlert: false });
     } else {
       this.setState({ loadingAlert: false });
     }
   }
 
   componentDidMount = async () => {
-    this.favoriteAppliance();
+    // this.favoriteAppliance();
     const favorites = await getFavoriteSongs();
     this.setState({ favoritedSongs: favorites });
     this.removeFav();
@@ -69,7 +73,7 @@ export default class MusicCard extends Component {
           Favoritar
           <input
             type="checkbox"
-            defaultChecked={ favoritChecks }
+            checked={ favoritChecks }
             onClick={ this.favoriteAppliance }
             data-testid={ `checkbox-music-${song}` }
             id="favorites"
@@ -85,5 +89,6 @@ MusicCard.propTypes = {
   songSnippet: PropTypes.string.isRequired,
   song: PropTypes.number.isRequired,
   music: PropTypes.string.isRequired,
-  trackId: PropTypes.string.isRequired,
+  update: PropTypes.func.isRequired,
+
 };
