@@ -10,13 +10,10 @@ export default class MusicCard extends Component {
     favoritedSongs: [],
   };
 
-  // handleCheck = async (event) => {
-  //   this.setState({ favoritChecks: event.target.checked }, this.favoriteAppliance);
-  // };
-
   favoriteAppliance = async () => {
     const { favoritChecks } = this.state;
     const { music, update } = this.props;
+    // console.log(update);
     this.setState({ loadingAlert: true });
     if (favoritChecks) {
       await removeSong(music);
@@ -35,25 +32,24 @@ export default class MusicCard extends Component {
     const { favoritedSongs } = this.state;
     this.setState({ loadingAlert: true });
     const { song } = this.props;
-    // console.log(trackId);
     if (favoritedSongs.some((id) => id.trackId === song)) {
-      this.setState({ favoritChecks: true, loadingAlert: false });
+      this.setState({ favoritChecks: false, loadingAlert: false });
     } else {
       this.setState({ loadingAlert: false });
     }
   }
 
   componentDidMount = async () => {
-    // this.favoriteAppliance();
+    const { music } = this.props;
     const favorites = await getFavoriteSongs();
-    this.setState({ favoritedSongs: favorites });
-    this.removeFav();
+    const isFavorite = favorites.some((favorite) => (
+      favorite.trackId === music.trackId));
+    this.setState({ favoritedSongs: favorites, favoritChecks: isFavorite });
   }
 
   render() {
     const { loadingAlert, favoritChecks } = this.state;
     const { songName, songSnippet, song } = this.props;
-
     return (
       <>
         {loadingAlert && <Loading />}
@@ -70,8 +66,9 @@ export default class MusicCard extends Component {
         </audio>
 
         <label htmlFor="favorites">
-          Favoritar
+          Favorita
           <input
+            aria-label="favorita"
             type="checkbox"
             checked={ favoritChecks }
             onClick={ this.favoriteAppliance }

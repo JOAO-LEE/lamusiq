@@ -19,7 +19,6 @@ export default class Album extends Component {
   albumRequestApi = async () => {
     const { match: { params: { id } } } = this.props;
     const albumRequest = await getMusics(id);
-    console.log(albumRequest);
     this.setState({ songPreviews: albumRequest,
       artist: albumRequest[0].artistName,
       album: albumRequest[0].collectionName,
@@ -47,7 +46,7 @@ export default class Album extends Component {
         {songPreviews.filter((skipAlbum) => skipAlbum.trackId)
           .map((music) => (
             <MusicCard
-              key={ music.collectionName }
+              key={ music.trackId }
               song={ music.trackId }
               songName={ music.trackName }
               songSnippet={ music.previewUrl }

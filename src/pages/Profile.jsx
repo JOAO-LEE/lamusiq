@@ -30,7 +30,7 @@ export default class Profile extends Component {
         {loading ? <Loading />
           : (
             <div>
-              <p className="song-name">{ user.name }</p>
+              <p>{ user.name }</p>
               <img
                 src={ user.image }
                 alt="foto de perfil"
@@ -39,12 +39,12 @@ export default class Profile extends Component {
               <h4>{ user.description }</h4>
               <h5>{ user.email }</h5>
               <Link
-                className="artist-name"
                 to="/profile/edit"
               >
                 Editar perfil
               </Link>
             </div>)}
+        Profile
       </div>
     );
   }

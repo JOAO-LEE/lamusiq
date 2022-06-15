@@ -27,7 +27,7 @@ export default class Header extends Component {
           <h1 className="principal-header">lamusiq</h1>
         </Link>
         <p data-testid="header-user-name" className="user-name">
-          {`Welcome, ${nameInput}!`}
+          {nameInput}
         </p>
         <nav className="navbar">
           <ul className="list">

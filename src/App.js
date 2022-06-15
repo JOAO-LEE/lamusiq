@@ -7,7 +7,7 @@ import Profile from './pages/Profile';
 import ProfileEdit from './pages/ProfileEdit';
 import Search from './pages/Search';
 import NotFound from './pages/NotFound';
-import './index.css';
+// import './index.css';
 
 class App extends React.Component {
   render() {

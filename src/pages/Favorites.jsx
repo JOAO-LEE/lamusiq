@@ -21,6 +21,7 @@ export default class Favorites extends Component {
     const { favoritedSongs } = this.state;
     this.setState({
       favoritedSongs: favoritedSongs.filter((id) => id.trackId !== tracks),
+      loading: false,
     });
   }
 
@@ -33,21 +34,21 @@ export default class Favorites extends Component {
     return (
       <div data-testid="page-favorites">
         <Header />
-        {loading && <Loading />}
-        {/* <div> */}
-        {
-          favoritedSongs.map((favorited) => (
-            <MusicCard
-              key={ favorited.trackId }
-              trackId={ favorited.trackId }
-              music={ favorited }
-              songName={ favorited.trackName }
-              songSnippet={ favorited.previewUrl }
-              update={ this.favoriteUpdates }
-            />
-          ))
-        }
-        {/* </div> */}
+        {loading ? (<Loading />)
+          : (
+
+            favoritedSongs.map((favorited) => (
+              <MusicCard
+                key={ favorited.trackId }
+                trackId={ favorited.trackId }
+                music={ favorited }
+                songName={ favorited.trackName }
+                songSnippet={ favorited.previewUrl }
+                update={ this.favoriteUpdates }
+              />
+            ))
+
+          )}
 
       </div>
     );
