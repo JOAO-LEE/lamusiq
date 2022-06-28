@@ -50,6 +50,7 @@ export default class MusicCard extends Component {
   render() {
     const { loadingAlert, favoritChecks } = this.state;
     const { songName, songSnippet, song } = this.props;
+    console.log(this.props);
     return (
       <>
         {loadingAlert && <Loading />}
