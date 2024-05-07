@@ -1,15 +1,9 @@
-// import Sidebar from './components/Sidebar';
-// import ActionButtons from './components/ActionButtons';
-// import AlbumSuggestions from './components/AlbumSuggestions/AlbumSuggestions';
-// import PlaylistsSuggestions from './components/PlaylistsSuggestions/PlaylistsSuggestions';
-// import Footer from './components/Footer/Footer';
 import { Routes, Route } from 'react-router-dom';
 import './App.css';
 import { useEffect, useState } from 'react';
 import { requestBody } from './utils/fetchRelated';
 import Layout from './shared/Layout';
 import Home from './pages/Home';
-
 
 function App() {
   const [token, setToken] = useState<string>()
@@ -39,14 +33,13 @@ function App() {
   }, [token]);
 
   return (
-
     <Routes>
-    <Route path="/" element={<Layout />}>
-      <Route index element={<Home />} />
+      <Route path="/" element={ <Layout /> }>
+        <Route index element={ <Home /> } />
       {/* <Route path="/about" element={<About />} />
       <Route path="/contact" element={<Contact />} /> */}
-    </Route>
-  </Routes>
+      </Route>
+    </Routes>
   )
 }
 
