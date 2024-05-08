@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { requestBody } from './utils/fetchRelated';
 import Layout from './shared/Layout';
 import Home from './pages/Home';
+import SignIn from './pages/SignIn';
 
 function App() {
   const [token, setToken] = useState<string>()
@@ -37,6 +38,7 @@ function App() {
       <Route path="/" element={ <Layout /> }>
         <Route index element={ <Home /> } />
       </Route>
+      <Route path="/sign-in" element={<SignIn />} />
     </Routes>
   )
 }
