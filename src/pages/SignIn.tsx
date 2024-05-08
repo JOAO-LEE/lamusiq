@@ -4,10 +4,16 @@ import { FormEvent } from "react";
 
 function SignIn() {
 
-  const handleGoogleSignIn = async (e: FormEvent): Promise<void> => {
+  const handleSpotifySignIn = async (e: FormEvent): Promise<void> => {
     e.preventDefault();
     supabase.auth.signInWithOAuth({ provider: "spotify", options: { redirectTo: "/" } });
   }
+
+  const handleGoogleSignIn = async (e: FormEvent): Promise<void> => {
+    e.preventDefault();
+    supabase.auth.signInWithOAuth({ provider: "google", options: { redirectTo: "/" } });
+  }
+
 
   return (
     <div className="flex flex-col justify-between h-screen">
@@ -18,13 +24,20 @@ function SignIn() {
         <p className="text-4xl">A Spotify Clone</p>
       </header>
       <main className="flex justify-center items-center p-4 h-1/2">
-        <form>
+        <form className="flex flex-col gap-2">
           <button 
-          onClick={(e) => handleGoogleSignIn(e)}
+          onClick={(e) => handleSpotifySignIn(e)}
           className="border border-zinc-100 rounded-lg p-3 hover:border-green-300 transition-all ease-in-out duration-700 hover:scale-105 text-justify">
             <img 
             src="src/assets/images/spotify-icon.png" alt="Google Logo" className="size-7 inline mr-2"/>
               Sign in with Spotify
+          </button>
+          <button 
+          onClick={(e) => handleGoogleSignIn(e)}
+          className="border border-zinc-100 rounded-lg p-3 hover:border-green-300 transition-all ease-in-out duration-700 hover:scale-105 text-justify">
+            <img 
+            src="src/assets/images/google-icon.png" alt="Google Logo" className="size-7 inline mr-2"/>
+              Sign in with Google
           </button>
         </form>
       </main>
