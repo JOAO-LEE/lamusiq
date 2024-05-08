@@ -7,31 +7,14 @@ import Home from './pages/Home';
 import SignIn from './pages/SignIn';
 
 function App() {
-  const [token, setToken] = useState<string>()
+  
 
   useEffect(() => {
-    const getToken = async (): Promise<void> => {
-      const response = await fetch("https://accounts.spotify.com/api/token", 
-        {
-          method: 'POST', 
-          body: requestBody,
-          headers: {
-            "Content-Type": "application/x-www-form-urlencoded",
-          }
-        }
-      );
-      
-      const result = await response.json();
-      setToken(result)
-      console.log(result)
-    };
+    
+    
+  
 
-    if(!token) {
-
-      getToken()
-    }
-
-  }, [token]);
+  }, []);
 
   return (
     <Routes>
@@ -44,3 +27,4 @@ function App() {
 }
 
 export default App
+ 

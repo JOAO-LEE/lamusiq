@@ -6,7 +6,7 @@ function SignIn() {
 
   const handleGoogleSignIn = async (e: FormEvent): Promise<void> => {
     e.preventDefault();
-    supabase.auth.signInWithOAuth({ provider: "google", options: { redirectTo: "/" } });
+    supabase.auth.signInWithOAuth({ provider: "spotify", options: { redirectTo: "/" } });
   }
 
   return (
@@ -18,13 +18,13 @@ function SignIn() {
         <p className="text-4xl">A Spotify Clone</p>
       </header>
       <main className="flex justify-center items-center p-4 h-1/2">
-        <form className="flex items-center justify-center p-2 bg-zinc-800 rounded-xl h-1/3 w-1/2 border-zinc-700 border">
+        <form>
           <button 
           onClick={(e) => handleGoogleSignIn(e)}
-          className="border border-zinc-100 rounded-lg p-3 text-center hover:border-green-300 transition-all ease-in-out duration-700 hover:scale-105">
+          className="border border-zinc-100 rounded-lg p-3 hover:border-green-300 transition-all ease-in-out duration-700 hover:scale-105 text-justify">
             <img 
-            src="src/assets/images/google-logo.png" alt="Google Logo" className="size-6 inline mr-2"/>
-              Sign in with Google
+            src="src/assets/images/spotify-icon.png" alt="Google Logo" className="size-7 inline mr-2"/>
+              Sign in with Spotify
           </button>
         </form>
       </main>
