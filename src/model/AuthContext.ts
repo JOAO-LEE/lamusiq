@@ -4,4 +4,5 @@ export interface AuthContext {
   session: Session | null | undefined 
   user: User | null | undefined
   signOut?: () => void
+  isLoading?: boolean
 }

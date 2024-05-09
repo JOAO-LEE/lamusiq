@@ -7,20 +7,21 @@ import { Session, User } from "@supabase/supabase-js";
 export const AuthProvider = ({children}: any) => {
   const [user, setUser] = useState<User>()
   const [session, setSession] = useState<Session | null>();
+  const [isLoading, setIsLoading] = useState<boolean>(true)
 
   useEffect(() => {
     const setData = async () => {
         const { data: { session }, error } = await supabase.auth.getSession();
-        // console.log(error)
         if (error) throw error;
-        setSession(session)
-        setUser(session?.user)
-       
+        setSession(session);
+        setUser(session?.user);
+        setIsLoading(false);
     };
 
     const { data: {subscription} } = supabase.auth.onAuthStateChange((_event, session) => {
         setSession(session);
-        setUser(session?.user)
+        setUser(session?.user);
+        setIsLoading(false);
     });
 
     setData();
@@ -34,6 +35,7 @@ export const AuthProvider = ({children}: any) => {
 const value = {
   session,
   user,
+  isLoading
 };
   
   return (

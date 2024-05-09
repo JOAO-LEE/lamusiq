@@ -4,9 +4,10 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
 
 export function Me() {
+  const auth = useAuth();
+  console.log(auth?.user)
+  // console.log(auth)
   const navigate = useNavigate();
-  const {session} = useAuth();
-  console.log(session)
   const signOut = () => {
     supabase.auth.signOut();
     navigate("/sign-in");
