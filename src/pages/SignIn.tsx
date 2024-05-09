@@ -1,8 +1,15 @@
 import { Link } from "react-router-dom"
 import supabase from "../config/supabaseConfig"
-import { FormEvent } from "react";
+import { FormEvent, useEffect } from "react";
 
 function SignIn() {
+
+  useEffect(() => {
+    supabase.auth.getSession().then((resolve) => {
+      console.log(resolve.data)
+    });
+
+  }, [])
 
   const handleSpotifySignIn = async (e: FormEvent): Promise<void> => {
     e.preventDefault();

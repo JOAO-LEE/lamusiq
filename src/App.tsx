@@ -1,45 +1,25 @@
-import { Routes, Route, useNavigate } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import './App.css';
-import { useEffect, useState } from 'react';
-import { requestBody } from './utils/fetchRelated';
 import Layout from './shared/Layout';
 import Home from './pages/Home';
 import SignIn from './pages/SignIn';
-import supabase from './config/supabaseConfig';
+import { Me } from './pages/Me';
+import PrivateRoutes from './utils/PrivateRoutes';
+import { AuthProvider } from './context/AuthContext/AuthProvider';
 
-const getSession = async () => {
-  const session = await supabase.auth.getSession();
-console.log(session)
-}
-
-function App() {
-  // const navigate = useNavigate();
-  // const session = supabase.auth.ses
-  
-
-  useEffect(() => {
-
-    getSession() 
-    
-
-    // supabase.auth.getUser().then((data) => {
-    //   console.log(data)
-    // }).catch(() => {
-    //   navigate("/sign-in")
-    // });
-  
-
-  }, []);
+export default function App() {
 
   return (
-    <Routes>
-      <Route path="/" element={ <Layout /> }>
-        <Route index element={ <Home /> } />
-      </Route>
-      <Route path="/sign-in" element={<SignIn />} />
-    </Routes>
+    <AuthProvider>
+      <Routes>
+        <Route path="/sign-in" element={<SignIn />} />
+          <Route element={ <PrivateRoutes /> }>
+            <Route  element={ <Layout /> }>
+              <Route path="/" index  element={<Home />} />
+              <Route  path="/me" element={<Me />}  />
+          </Route>
+        </Route>
+      </Routes>
+    </AuthProvider>
   )
 }
-
-export default App
- 
