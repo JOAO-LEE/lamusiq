@@ -4,7 +4,7 @@ import PlaylistsSuggestions from "../components/PlaylistsSuggestions/PlaylistsSu
 
 function Home() {
   return (
-    <section className="flex-1 p-6">
+    <section className="flex-1 p-6 h-full">
       <ActionButtons />
       <AlbumSuggestions />
       <PlaylistsSuggestions />

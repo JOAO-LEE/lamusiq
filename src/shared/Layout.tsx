@@ -7,9 +7,9 @@ function Layout() {
   return (
     <SearchProvider>
       <div className="h-screen flex flex-col">
-        <div className='flex flex-1'>
+        <div className="flex flex-1">
           <Sidebar />
-          <main className="flex-1 p-6">
+          <main className="flex-1 p-6 h-full">
             <Outlet />
           </main>
         </div>
