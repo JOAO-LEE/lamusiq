@@ -5,14 +5,14 @@ import { UserCircle } from 'lucide-react'
 function PhotoAndInfo() {
   const auth = useAuth()
   return (
-    <div className="flex gap-2 items-center">
+    <div className="flex flex-col items-start md:flex-row gap-2 md:items-center">
           <div>
             {
               auth?.user?.user_metadata?.avatar_url 
               ? 
                 (
                   <>
-                    <img src={auth?.user?.user_metadata?.avatar_url} className="size-16 p-1 border border-zinc-700 rounded-full"/> 
+                    <img src={auth?.user?.user_metadata?.avatar_url} className="size-16 p-1 border border-zinc-700 rounded-full object-"/> 
                   </>
                 )
               : 
