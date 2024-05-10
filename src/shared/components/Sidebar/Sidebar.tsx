@@ -9,7 +9,7 @@ export default function Sidebar() {
   const { isSearchOpen } = useContext(SearchContext);
 
   return (
-    <aside className="w-20 flex flex-col items-center h-full p-6 bg-zinc-950 lg:inline lg:w-72">
+    <aside className="w-20 flex flex-col items-center h-full p-6 bg-zinc-950  lg:inline lg:w-72">
        <CosmeticButtons />
        {
           !isSearchOpen

@@ -1,4 +1,4 @@
-import { Shuffle, SkipBack, Play, SkipForward, Repeat, Heart, EllipsisVertical } from "lucide-react";
+import { Shuffle, SkipBack, Play, SkipForward, Repeat, Heart, Volume2 } from "lucide-react";
 
 export default function Player() {
   return (
@@ -21,7 +21,12 @@ export default function Player() {
           <div className="w-12 lg:w-40 bg-zinc-200 h-1 rounded-full"></div>
         </div>
         <span className="text-zinc-500 text-xs group-hover:text-zinc-300 transition-colors">4:19</span>
-        <EllipsisVertical className="md:hidden"/>
+        <div className="flex items-center gap-2 md:hidden">
+          <Volume2 size={20} />
+          <div className="h-1 w-24 bg-zinc-600 group-hover:bg-zinc-700 rounded-full">
+              <div className="w-20 bg-zinc-200 h-1 rounded-full"></div>
+          </div>
+        </div>
       </div>
     </div>
   )
