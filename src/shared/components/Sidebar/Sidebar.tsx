@@ -9,22 +9,11 @@ export default function Sidebar() {
   const { isSearchOpen } = useContext(SearchContext);
 
   return (
-    <aside className={`${isSearchOpen ? "w-full sm:w-96 md:w-90 lg:w-72" : "flex-0 lg:inline lg:w-72"} flex flex-col items-center h-full p-6 bg-zinc-950`}>
-      { !isSearchOpen && <CosmeticButtons />}
-      {
-        !isSearchOpen
-        ?
-          (
-            <>
-              <UserActions />
-              <Playlists />
-            </>
-          )
-        :
-          (
-            <Search />
-          )    
-       }
-    </aside>
+    <div className="w-16 flex-0 flex flex-col items-center p-6 h-min sticky top-0 lg:w-52 lg:items-start" >
+      <CosmeticButtons />    
+      <UserActions />
+      <Playlists />
+      {isSearchOpen ? <Search /> : <></>}
+    </div>
   )
-}
+} 

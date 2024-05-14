@@ -11,6 +11,7 @@ function SearchResults() {
   const searchParams = useSearchParams();
   const auth = useAuth();
   const [searchResults, setSearchResults] = useState<SearchResultsDTO>();
+
   useEffect(() => {
 
     const getSearchResults = async (): Promise<void> => {
@@ -25,11 +26,9 @@ function SearchResults() {
               } 
           }
         );
-      // console.log(response)
       const searchResults: SearchResultsDTO = await response.json();
       console.log(searchResults)
       setSearchResults(searchResults)
-
       } catch (error) {
         console.log(error)
         
@@ -40,34 +39,31 @@ function SearchResults() {
 
   }, []);
 
+
+
   return (
     <section className=" flex flex-col mb-12">
-      <h1 className="text-3xl text-zinc-50">See the results for "<span className="text-green-400">{searchParams[0].get('q')}</span>":</h1>
       <div className="flex flex-col gap-3 w-full p-1 mt-2">
-        <BestResults searchResults={searchResults!}/>
-        <Artists searchResults={searchResults!} />
-        <Albums searchResults={searchResults!} />
-        <Playlists searchResults={searchResults!} />
+          {
+            searchResults 
+            ? 
+              (
+                <>
+                  <h1 className="text-3xl text-zinc-50">See the results for "<span className="text-green-400">{searchParams[0].get('q')}</span>":</h1>
+                  {(searchResults.artists.items.length > 0 && searchResults.tracks.items.length > 0) && <BestResults searchResults={searchResults}/>}
+                  {searchResults.albums.items.length > 0 && <Albums searchResults={searchResults} />}
+                  {searchResults.artists.items.length > 0 && <Artists searchResults={searchResults} />}
+                  {searchResults.playlists.items.length > 0 && <Playlists searchResults={searchResults} />}
+                </>    
+              )
+            : 
+              (
+                <h1 className="text-4xl text-zinc-50">No results for"<span className="text-green-400">{searchParams[0].get('q')}</span>" :(</h1> 
+              )
+          }
       </div>
     </section>
   )
 }
 
 export default SearchResults;
-// " rounded-full object-contain"
-    // {/* {
-    //     searchResults 
-    //     ?
-    //       (
-    //         <> */}
-
-  //  {/* </>
-  //         )
-  //       :  */}
-  //         {/* ( */}
-  //           {/* <h1 className="text-4xl text-zinc-50">No results for"<span className="text-green-400">{searchParams[0].get('q')}</span>" :(</h1> */}
-  //         {/* ) */}
-
-
-  //     {/* } */}
-  // h-[${artist.images[0]?.height.toString()}px] w-[${artist.images[0]?.width.toString()}px] 

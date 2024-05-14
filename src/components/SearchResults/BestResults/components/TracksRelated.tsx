@@ -1,7 +1,7 @@
-import { BestResults } from '../../../../model/Search/SearchResults'
+import { BestResultsDTO } from '../../../../model/Search/SearchResults'
 import { getDuration } from '../../../../utils/getDuration'
 
-function TracksRelated({bestResults} : {bestResults: BestResults}) {
+function TracksRelated({bestResults} : {bestResults: BestResultsDTO}) {
   return (
     <div className="col-span-2 p-3">
         <h2 className="text-2xl font-medium">Tracks</h2>

@@ -44,6 +44,13 @@ export interface CommonSearchResults {
   items: Array<SearchResult> | []
 }
 
+export interface BestResultsDTO {
+  image: string, 
+  name: string, 
+  type: string, 
+  tracks: Array<TracksTreatedResult>
+}
+
 export interface SearchResultsDTO {
   albums: CommonSearchResults
   artists: CommonSearchResults

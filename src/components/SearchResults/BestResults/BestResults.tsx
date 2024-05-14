@@ -1,12 +1,10 @@
 import { useState, useEffect } from "react"
-import { BestResults, SearchResultsDTO, TracksTreatedResult } from "../../../model/Search/SearchResults"
-import { getDuration } from "../../../utils/getDuration";
+import { BestResultsDTO, SearchResultsDTO, TracksTreatedResult } from "../../../model/Search/SearchResults"
 import ArtistRelated from "./components/ArtistRelated";
 import TracksRelated from "./components/TracksRelated";
 
-
 function BestResults({ searchResults }: { searchResults: SearchResultsDTO }) {
-  const [bestResults, setBestResults] = useState<BestResults>();
+  const [bestResults, setBestResults] = useState<BestResultsDTO>();
 
   useEffect(() => {
     if (searchResults) {
@@ -27,7 +25,6 @@ function BestResults({ searchResults }: { searchResults: SearchResultsDTO }) {
           name: searchResults?.artists?.items[0].name, 
           type: `${searchResults?.artists?.items[0].type[0].toUpperCase()}${searchResults.artists.items[0].type.slice(1)}`,
           tracks: tracks.slice(0, 4)
-          // tracks: searchResults.tracks
         }
       );  
     }  
@@ -45,11 +42,9 @@ function BestResults({ searchResults }: { searchResults: SearchResultsDTO }) {
             </>
           )
         :
-        <></>   
-
+        <>
+        </>   
       }
-      
-      
     </div>
   )
 }

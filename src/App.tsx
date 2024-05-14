@@ -9,7 +9,6 @@ import { AuthProvider } from './context/AuthContext/AuthProvider';
 import SearchResults from './pages/SearchResults';
 
 export default function App() {
-
   return (
     <AuthProvider>
       <Routes>
