@@ -11,10 +11,10 @@ function Layout() {
   console.log(isSearchOpen)
   return (
     <SearchProvider>
-      <div className="h-screen flex flex-col">
+      <div className="h-dvh flex flex-col">
         <div className="flex flex-1">
           <Sidebar />
-          <main className="flex-1 p-6 h-full">
+          <main className="flex-1 p-6 h-full w-[27rem]">
             <Outlet />
           </main>
         </div>

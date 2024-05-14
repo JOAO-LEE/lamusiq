@@ -2,7 +2,7 @@ import { Mic2, LayoutList, SquareMenu, MonitorSpeaker, Volume2, Maximize2 } from
 
 export default function PlayerActions() {
   return (
-    <div className="hidden md:flex items-center justify-end gap-4 w-1/4">
+    <div className="hidden md:flex items-center justify-end gap-4 w-1/3">
       <div className="hidden lg:flex gap-2">
         <Mic2 size={20}/>
         <LayoutList size={20} />

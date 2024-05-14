@@ -6,17 +6,21 @@ import SignIn from './pages/SignIn';
 import { Me } from './pages/Me';
 import PrivateRoutes from './utils/PrivateRoutes';
 import { AuthProvider } from './context/AuthContext/AuthProvider';
+import SearchResults from './pages/SearchResults';
 
 export default function App() {
 
   return (
     <AuthProvider>
       <Routes>
-        <Route path="/sign-in" element={<SignIn />} />
+        <Route path="/sign-in" element={ <SignIn /> } />
           <Route path="/" element={  <PrivateRoutes /> }>
             <Route  element={ <Layout /> }>
-              <Route path="/" index element={<Home />} />
-              <Route path="/me" element={<Me />}  />
+              <Route path="/" index element={ <Home /> } />
+              <Route path="/me" element={ <Me /> }  />
+              <Route path="/search">
+                <Route path="results" element={ <SearchResults /> } />
+              </Route>
           </Route>
         </Route>
       </Routes>

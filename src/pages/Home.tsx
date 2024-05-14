@@ -8,7 +8,7 @@ function Home() {
   const {isSearchOpen} = useContext(SearchContext);
   
   return (
-    <section className={`${isSearchOpen ? "hidden md:inline md:blur md:pointer-events-none" : "inline flex-1 p-6 mb-28 sm:mb-24 xl:mb-0" }`}>
+    <section className={`${isSearchOpen ? "hidden md:block md:blur md:pointer-events-none" : "block" } flex-1 p-6 mb-28 sm:mb-24 xl:mb-0`}>
       <ActionButtons />
       <AlbumSuggestions />
       <PlaylistsSuggestions />

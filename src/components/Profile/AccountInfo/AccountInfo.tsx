@@ -1,5 +1,5 @@
 import { useAuth } from '../../../hooks/useAuth'
-import { formatDate } from '../../../utils/formatDate';
+import { formatAmericanDate } from '../../../utils/formatDate';
 
 function AccountInfo() {
   const auth = useAuth();
@@ -7,7 +7,7 @@ function AccountInfo() {
     <div className="flex flex-col gap-3 mt-5 h-full text-xl">
       <div className="flex flex-col gap-1.5">
         <span className="font-bold">You created this account using</span>
-        <strong className="text-green-400 text-2xl">{auth?.user?.app_metadata.provider?.replace(auth?.user?.app_metadata.provider[0], auth?.user?.app_metadata.provider[0].toUpperCase())} at {formatDate(auth?.user?.created_at)}</strong>
+        <strong className="text-green-400 text-2xl">{auth?.user?.app_metadata.provider?.replace(auth?.user?.app_metadata.provider[0], auth?.user?.app_metadata.provider[0].toUpperCase())} at {formatAmericanDate(auth?.user?.created_at)}</strong>
       </div>
       {
         auth?.user?.app_metadata.provider === "spotify" 
