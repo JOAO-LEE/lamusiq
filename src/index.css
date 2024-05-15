@@ -1,3 +1,104 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.search-box-open {
+  animation: search-box-move-open  .8s normal ease-in-out;
+  left: 4rem;
+  bottom: 10rem;
+  display: flex
+
+}
+
+.search-box-close {
+  animation: search-box-move-close .8s normal ease-in-out;
+  left: 4rem;
+  bottom: 10rem;
+  display: none;
+}
+
+@keyframes search-box-move-close {
+  0% {
+    left: 4rem;
+    opacity: 1;
+    display: flex;
+    z-index: 28;
+
+  }
+
+  50% {
+    transform: scale(1.2);
+  }
+
+  100% {
+    transform: scale(1);
+    left: -10rem;
+    opacity: 0.0;
+    display: none
+  }
+}
+
+@keyframes search-box-move-open {
+  0% {
+    left: -10rem;
+    opacity: 0.2;
+    display: none
+  }
+
+  100% {
+    left: 4rem;
+    opacity: 1;
+  }
+}
+
+@media (min-width: 768px) {
+  
+  .search-box-open {
+    animation: search-box-move-open  .8s normal ease-in-out;
+    left: 14rem;
+    bottom: 23rem;
+    display: flex
+  
+  }
+
+  .search-box-close {
+    animation: search-box-move-close .8s normal ease-in-out;
+    left: 14rem;
+    bottom: 23rem;
+    display: none
+  }
+
+  @keyframes search-box-move-close {
+     0% {
+    left: 14rem;
+    opacity: 1;
+    display: flex;
+    z-index: 28;
+
+  }
+
+  50% {
+    transform: scale(1.2);
+  }
+
+  100% {
+    transform: scale(1);
+    left: -10rem;
+    opacity: 0.0;
+    display: none
+  }
+}
+  @keyframes search-box-move-open {
+    0% {
+      left: -20rem;
+      opacity: 0.2;
+    }
+
+    100% {
+      left: 14rem;
+      opacity: 1;
+    }
+  }
+  }
+  
+
