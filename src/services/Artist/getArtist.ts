@@ -77,8 +77,9 @@ export const getArtistAlbums = async (id: string, token: string) => {
         }
       );
 
-      const relatedArtists = await response.json();
-      return relatedArtists;
+      const artistAlbums = await response.json();
+      console.log(artistAlbums)
+      return artistAlbums;
 
     } catch (error) {
       console.log(error)

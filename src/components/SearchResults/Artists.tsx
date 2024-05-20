@@ -28,4 +28,4 @@ function Artists({ searchResults }: {searchResults: SearchResultsDTO}) {
   )
 }
 
-export default Artists
+export default Artists;

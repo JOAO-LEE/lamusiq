@@ -19,7 +19,11 @@ function Tracks({tracks}: {tracks: Array<TracksDTO>}) {
                   <>
                     {
                       tracks.map((track, index) => (
-                        <Track track={track} key={index}/>
+                        <Track 
+                        track={track}
+                        trackNum={index + 1} 
+                        showImage={true} 
+                        key={index}/>
                       ))
                     }
                   </>
@@ -29,7 +33,11 @@ function Tracks({tracks}: {tracks: Array<TracksDTO>}) {
                   <>
                     {
                       tracks.slice(0, 6).map((track, index) => (
-                        <Track track={track} key={index}/>
+                        <Track 
+                        track={track}
+                        trackNum={index + 1} 
+                        showImage={true} 
+                        key={index}/>
                       ))
                     }
                   </>

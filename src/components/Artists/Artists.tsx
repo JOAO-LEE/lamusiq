@@ -25,7 +25,4 @@ function Artists({ relatedArtists } : { relatedArtists: Array<RelatedArtist> }) 
   )
 }
 
-export default Artists
-// {
-//   artist?.related_artists?.length 
-//   && 
+export default Artists;

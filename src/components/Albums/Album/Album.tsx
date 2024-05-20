@@ -1,18 +1,32 @@
-import React from 'react'
+import { Link, useNavigate } from 'react-router-dom';
 import { Album as AlbumDTO} from '../../../model/Album/Album'
 import { getYear } from '../../../utils/formatDate'
 
-function Album({ album }: { album: AlbumDTO}) {
+
+function Album({ album, artistId }: { album: AlbumDTO, artistId: string }) {
+  const navigate = useNavigate()
+  const goToAlbumPage = (albumId: string) => {
+    navigate(`/album/${albumId}`, 
+      { 
+        state: artistId
+      }
+    )
+    console.log(albumId, artistId)
+  };
+
   return (
-    <div className="flex flex-col gap-2 p-2" key={album.id}>
-      <div className="">
+    <div
+    className="group flex flex-col items-center gap-2 p-3 hover:bg-zinc-800 duration-75 rounded-md" key={album.id}>
+      <div
+      onClick={() => goToAlbumPage(album.id)} 
+      className="cursor-pointer">
         <img 
         src={album.images[0]?.url} 
-        className="rounded-md object-cover size-48 sm:size-40"
+        className="rounded-md object-cover size-48 sm:size-40 group-hover:scale-105 transition-transform duration-500"
         />
-        </div>
+      </div>
       <div className="flex flex-col gap-1 w-48">
-        <span className="text-sm truncate ">{album.name}</span>
+        <span className="text-sm truncate cursor-pointer hover:underline" onClick={() => goToAlbumPage(album.id)}>{album.name}</span>
         <div className="flex gap-1 text-xs text-gray-500">
           <span>{getYear(album.release_date)}</span>
           <span>•</span>
@@ -23,12 +37,16 @@ function Album({ album }: { album: AlbumDTO}) {
                 (
                   album.artists.map((artist, index) => (
                   
-                      <p key={artist.id} className="truncate">{artist.name}{index < 1 && <span>,&nbsp;</span>}</p>
+                      <Link to={`/artist/${artist.id}`} key={artist.id} className="truncate">
+                        {artist.name}{index < 1 && <span>,&nbsp;</span>}
+                      </Link>
                   ))
                 )
               :
                 (
-                  album.artists[0].name
+                  <Link to={`/artist/${artistId}`} className='hover:underline'>
+                    {album.artists[0].name}
+                  </Link>
                 )
             } 
           </div>

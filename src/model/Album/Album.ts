@@ -10,4 +10,6 @@ export interface Album {
   type: string
   release_date: string
   artists: Array<Artist>
+  album_group: string
+  label: string
 }

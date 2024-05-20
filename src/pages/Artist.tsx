@@ -3,16 +3,14 @@ import { useParams } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
 import { getArtist, getRelatedArtists, getTopTracks, getArtistAlbums } from "../services/Artist/getArtist";
 import { ArtistPage } from "../model/Artist/Artist";
-import Track from "../components/Track/Track";
-import { getYear } from "../utils/formatDate";
 import Tracks from "../components/Tracks/Tracks";
 import Albums from "../components/Albums/Albums";
 import Artists from "../components/Artists/Artists";
+import { Album } from "../model/Album/Album";
 
 function Artist() {
   const param = useParams();
   const [artist, setArtist] = useState<ArtistPage>();
-  const [showAllTracks, setShowAllTracks] = useState<boolean>(false);
   const auth = useAuth();
   
   useEffect(() => {
@@ -27,7 +25,7 @@ function Artist() {
             total_listeners: artistInfo?.followers?.total ?? 0,
             tracks,
             discography: artistAlbums,
-            appears_on: tracks,
+            appears_on: artistAlbums.filter((artistAlbum: Album) => artistAlbum.album_group === "appears_on"),
             related_artists: relatedArtists
           });
     } catch (error) {
@@ -41,17 +39,17 @@ function Artist() {
   }, [param.id, auth?.spotifyToken?.access_token]);
 
   return (
-    <section className="rounded-md mb-96 md:mb-48 p-1.5 text-zinc-200">
+    <section className="rounded-md mb-96 p-1.5 text-zinc-200">
       <div className="flex flex-col gap-2 relative">
         <img 
         src={artist?.image} 
         alt="" 
-        className="rounded-md object-fill"
+        className="rounded-md object-fill brightness-75 hover:brightness-100 transition duration-500"
         />
         <div className="flex flex-col absolute top-96 w-full">
-          <div className="flex flex-col backdrop-blur-md w-full">
+          <div className="flex flex-col backdrop-blur-2xl w-full">
             <span className="text-7xl font-bold pointer-events-none p-2">{artist?.name}</span>
-            <span className="drop-shadow-lg p-2">{artist?.total_listeners} monthly listeners</span>
+            <span className="drop-shadow-lg p-2">{artist?.total_listeners.toLocaleString('en-US')} monthly listeners</span>
             <section className="bg-zinc-900 p-3 flex flex-col gap-3">
               {
                 artist?.tracks.length 
@@ -70,7 +68,7 @@ function Artist() {
                     <div>
                       <h2 className="text-xl font-bold">Discography</h2>
                       <div className="flex gap-1 overflow-x-auto scrollbar-none">
-                        <Albums albums={artist.discography}/>
+                        <Albums albums={artist.discography} artistId={artist.id}/>
                       </div>
                     </div>
                   )
@@ -84,6 +82,18 @@ function Artist() {
                       <div className="flex gap-2 overflow-x-auto scrollbar-none p-1.5">
                         <Artists relatedArtists={artist.related_artists} />
                       </div> 
+                    </div>
+                  )
+              }
+              {
+                artist?.appears_on?.length 
+                &&
+                  (
+                    <div>
+                      <h2 className="text-xl font-bold">Appears on</h2>
+                      <div className="flex gap-2 overflow-x-auto scrollbar-none p-1.5">
+                        <Albums albums={artist.appears_on} />
+                      </div>
                     </div>
                   )
               }

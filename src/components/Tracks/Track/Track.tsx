@@ -1,20 +1,32 @@
 import { Tracks } from "../../../model/Tracks/Tracks";
 import { getDuration } from "../../../utils/getDuration";
 
-function Track({ track }: { track: Tracks }) {
+function Track({ track, showImage, trackNum }: { track: Tracks, showImage?: boolean, trackNum?: number }) {
   const maxArtistsToShow = 4;
   const artistsToShow = track.artists.slice(0, maxArtistsToShow);
   return (
-    <div className="flex justify-between p-2">
-      <div className="flex gap-2">
-        <img 
-        src={track?.album?.images[0].url} 
-        height={track?.album?.images[0].height} 
-        width={track?.album?.images[0].width} 
-        className="size-10 rounded"
-        />
+    <div className="flex justify-between text-zinc-300 items-center">
+      <div className="flex gap-2 items-center p-4 space-x-2">
+        { trackNum 
+          && 
+            (
+              <p className="text-lg text-zinc-400">{trackNum}</p>
+            )
+        }
+        {
+          showImage 
+          && 
+            (
+              <img 
+              src={track?.album?.images[0].url} 
+              height={track?.album?.images[0].height} 
+              width={track?.album?.images[0].width} 
+              className="size-10 rounded"
+              />
+            )
+        }
         <div className="flex flex-col gap-1">
-        <span>{track.name}</span>
+          <span>{track.name}</span>
           <div className="flex items-end gap-2">
           {
             track.explicit 
