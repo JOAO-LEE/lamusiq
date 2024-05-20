@@ -7,6 +7,7 @@ import { Me } from './pages/Me';
 import PrivateRoutes from './utils/PrivateRoutes';
 import { AuthProvider } from './context/AuthContext/AuthProvider';
 import SearchResults from './pages/SearchResults';
+import Artist from './pages/Artist';
 
 export default function App() {
   return (
@@ -20,6 +21,7 @@ export default function App() {
               <Route path="/search">
                 <Route path="results" element={ <SearchResults /> } />
               </Route>
+              <Route path="/artist/:id" element={<Artist />}/>
           </Route>
         </Route>
       </Routes>

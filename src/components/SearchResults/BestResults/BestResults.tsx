@@ -5,7 +5,7 @@ import TracksRelated from "./components/TracksRelated";
 
 function BestResults({ searchResults }: { searchResults: SearchResultsDTO }) {
   const [bestResults, setBestResults] = useState<BestResultsDTO>();
-
+  
   useEffect(() => {
     if (searchResults) {
       const tracks: TracksTreatedResult[] = searchResults.tracks.items.map(track => {
@@ -21,7 +21,7 @@ function BestResults({ searchResults }: { searchResults: SearchResultsDTO }) {
       });
       setBestResults( 
         { 
-          image: searchResults?.artists?.items[0]?.images[0].url, 
+          image: searchResults?.artists?.items[0]?.images[0]?.url, 
           name: searchResults?.artists?.items[0].name, 
           type: `${searchResults?.artists?.items[0].type[0].toUpperCase()}${searchResults.artists.items[0].type.slice(1)}`,
           tracks: tracks.slice(0, 4)
@@ -31,7 +31,7 @@ function BestResults({ searchResults }: { searchResults: SearchResultsDTO }) {
   }, [searchResults]);
 
   return (
-    <div className="grid grid-cols-3 gap-3 rounded-md bg-zinc-900 p-3 border border-zinc-700">
+    <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 rounded-md bg-zinc-900 p-3 border border-zinc-700">
       {
         bestResults 
         ?

@@ -4,9 +4,9 @@ interface Artists {
   href: string
 }
 
-type ImagesSearchResult = Array<{height: number, width: number, url: string}>
+export type ImagesSearchResult = Array<{height: number, width: number, url: string}>
 
-interface SearchResult {
+export interface SearchResult {
   id: string
   href: string
   album_type: string
@@ -23,6 +23,10 @@ interface SearchResult {
   }
   owner?: {
     display_name: string
+  }
+  followers?: {
+    href?: string | null
+    total: number
   }
   explicit: boolean
   duration_ms: number

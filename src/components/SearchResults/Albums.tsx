@@ -1,10 +1,10 @@
 import { SearchResultsDTO } from '../../model/Search/SearchResults'
 import { getYear } from '../../utils/formatDate'
 
-function Albums({searchResults}: {searchResults: SearchResultsDTO}) {
+function Albums({ searchResults }: { searchResults: SearchResultsDTO }) {
 
   return (
-    <div className="rounded-md bg-zinc-900 p-3 border border-zinc-700">
+    <div className="rounded-md bg-zinc-900 p-3 border border-zinc-700 ">
       <h2 className="text-2xl">Albums</h2>
       <div className="flex gap-1 overflow-x-auto scrollbar-none">
         {

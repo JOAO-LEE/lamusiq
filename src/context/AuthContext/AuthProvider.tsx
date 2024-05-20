@@ -6,7 +6,7 @@ import { getSpotifyToken } from "../../services/spotify";
 import { SpotifyTokenResponse } from "../../model/SpotifyTokenResponse";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const AuthProvider = ({children}: any) => {
+export const AuthProvider = ({ children }: any) => {
   const [user, setUser] = useState<User>();
   const [session, setSession] = useState<Session | null>();
   const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -14,31 +14,38 @@ export const AuthProvider = ({children}: any) => {
 
   useEffect(() => {
     const setData = async () => {
-        const { data: { session }, error } = await supabase.auth.getSession();
-        if (error) throw error;
-        setSession(session);
-        setUser(session?.user);
-        if (session) {
-          const spotifyToken = await getSpotifyToken();
-          setSpotifyToken(spotifyToken);
-          console.log(spotifyToken)
+      const { data: { session }, error } = await supabase.auth.getSession();
+      if (error) throw error;
+      setSession(session);
+      setUser(session?.user);
 
-        }
+      if (!spotifyToken) {
+        const token = await getSpotifyToken();
+        setSpotifyToken(token);
         setIsLoading(false);
-
+        return;
+      }
     };
 
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
+      if (event === "SIGNED_OUT") {
+        setSession(null)
+        setUser(undefined)
+        setSpotifyToken(undefined);
+        return;
+      }
+
+      if (session) {
         setSession(session);
         setUser(session?.user);
-        
-        setIsLoading(false);
+      }
+      setIsLoading(false);
     });
 
     setData();
-
+    
     return () => {
-        subscription.unsubscribe();
+      subscription.unsubscribe();
     };
     
 }, []);
