@@ -5,7 +5,7 @@ import { getArtist, getRelatedArtists, getTopTracks, getArtistAlbums } from "../
 import { ArtistPageInfo } from "../model/Artist/Artist";
 import Tracks from "../components/Tracks/Tracks";
 import { AlbumsMapper } from "../components/Album/Mapper/AlbumsMapper";
-import Artists from "../components/Artists/Artists";
+import { ArtistsMapper } from "../components/Artists/Artists";
 import { Album } from "../model/Album/Album";
 import { LoadingSpinner } from "../components/Loading/LoadingSpinner";
 
@@ -20,7 +20,6 @@ export function ArtistPage() {
       try {
         const [artist, tracks, relatedArtists, artistAlbums] = await Promise.all([getArtist(id, token), getTopTracks(id, token), getRelatedArtists(id, token), getArtistAlbums(id, token)]);
         if (artist && tracks && relatedArtists && artistAlbums) {
-          console.log(artist)
           setArtistInfo({
             id: artist.id,
             name: artist.name,
@@ -98,7 +97,7 @@ export function ArtistPage() {
                           <div>
                             <h2 className="text-xl font-bold">Fans also like</h2>
                             <div className="flex gap-2 overflow-x-auto scrollbar-none p-1.5">
-                              <Artists relatedArtists={artistInfo.related_artists} />
+                              <ArtistsMapper artists={artistInfo.related_artists} />
                             </div> 
                           </div>
                         )

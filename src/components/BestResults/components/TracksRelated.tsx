@@ -1,5 +1,5 @@
-import { BestResultsDTO } from '../../../../model/Search/SearchResults'
-import { getDuration } from '../../../../utils/getDuration'
+import { BestResultsDTO } from '../../../model/Search/SearchResult'
+import { getDuration } from '../../../utils/getDuration'
 
 function TracksRelated({bestResults} : {bestResults: BestResultsDTO}) {
   return (

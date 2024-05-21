@@ -1,10 +1,11 @@
-import { useState, useEffect } from "react"
-import { BestResultsDTO, SearchResultsDTO, TracksTreatedResult } from "../../../model/Search/SearchResults"
+import { useState, useEffect } from "react";
+import { SearchBestResults, SearchResults } from "../../model/Search/SearchResult";
+import { TracksTreatedResult } from "../../model/Track/Track";
 import ArtistRelated from "./components/ArtistRelated";
 import TracksRelated from "./components/TracksRelated";
 
-function BestResults({ searchResults }: { searchResults: SearchResultsDTO }) {
-  const [bestResults, setBestResults] = useState<BestResultsDTO>();
+function BestResults({ searchResults }: { searchResults: SearchResults }) {
+  const [bestResults, setBestResults] = useState<SearchBestResults>();
   
   useEffect(() => {
     if (searchResults) {

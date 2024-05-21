@@ -1,5 +1,5 @@
 import { CircleUser } from 'lucide-react'
-import { BestResultsDTO } from '../../../../model/Search/SearchResults'
+import { BestResultsDTO } from '../../../model/Search/SearchResult'
 
 function ArtistRelated({ bestResults } : { bestResults: BestResultsDTO }) {
   

@@ -10,19 +10,3 @@ export interface Playlist extends Item {
     total: number
   }
 }
-
-//   album_type: string
-//   artists: Array<Artists>
-// release_date: string
-// external_urls: {
-//   spotify: string
-// }
-// images: ImagesSearchResult
-
-
-// followers?: {
-//   href?: string | null
-//   total: number
-// }
-// explicit: boolean
-// duration_ms: number
