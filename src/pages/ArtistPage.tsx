@@ -2,22 +2,21 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
 import { getArtist, getRelatedArtists, getTopTracks, getArtistAlbums } from "../services/Artist/getArtist";
-import { ArtistPage } from "../model/Artist/Artist";
+import { ArtistPage as ArtistPageDTO} from "../model/Artist/Artist";
 import Tracks from "../components/Tracks/Tracks";
-import Albums from "../components/Albums/Albums";
+import { AlbumsMapper } from "../components/Album/Mapper/AlbumsMapper";
 import Artists from "../components/Artists/Artists";
 import { Album } from "../model/Album/Album";
 
-function Artist() {
+export function ArtistPage() {
   const param = useParams();
-  const [artist, setArtist] = useState<ArtistPage>();
+  const [artist, setArtist] = useState<ArtistPageDTO>();
   const auth = useAuth();
   
   useEffect(() => {
     const getArtistInfo = async (id: string, token: string) => {
       try {
         const [artistInfo, { tracks }, { artists: relatedArtists }, { items: artistAlbums }] = await Promise.all([getArtist(id, token), getTopTracks(id, token), getRelatedArtists(id, token), getArtistAlbums(id, token)]);
-        console.log(artistAlbums)
           setArtist({
             id: artistInfo?.id ?? "",
             name: artistInfo?.name ?? "", 
@@ -28,14 +27,14 @@ function Artist() {
             appears_on: artistAlbums.filter((artistAlbum: Album) => artistAlbum.album_group === "appears_on"),
             related_artists: relatedArtists
           });
-    } catch (error) {
-      console.log(error) 
-    }
-  };
+      } catch (error) {
+        console.log(error) 
+      }
+    };
 
-  if (param.id && auth?.spotifyToken?.access_token) {
-    getArtistInfo(param.id, auth?.spotifyToken?.access_token);
-  }
+    if (param.id && auth?.spotifyToken?.access_token) {
+      getArtistInfo(param.id, auth?.spotifyToken?.access_token);
+    }
   }, [param.id, auth?.spotifyToken?.access_token]);
 
   return (
@@ -68,7 +67,7 @@ function Artist() {
                     <div>
                       <h2 className="text-xl font-bold">Discography</h2>
                       <div className="flex gap-1 overflow-x-auto scrollbar-none">
-                        <Albums albums={artist.discography} artistId={artist.id}/>
+                        <AlbumsMapper albums={artist.discography} artistId={artist.id}/>
                       </div>
                     </div>
                   )
@@ -92,7 +91,7 @@ function Artist() {
                     <div>
                       <h2 className="text-xl font-bold">Appears on</h2>
                       <div className="flex gap-2 overflow-x-auto scrollbar-none p-1.5">
-                        <Albums albums={artist.appears_on} />
+                        <AlbumsMapper albums={artist.appears_on} />
                       </div>
                     </div>
                   )
@@ -104,5 +103,3 @@ function Artist() {
     </section>
   )
 }
-
-export default Artist;

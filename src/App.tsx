@@ -1,29 +1,29 @@
+import { ArtistPage } from './pages/ArtistPage';
+import { HomePage } from './pages/HomePage';
+import { SignInPage } from './pages/SignInPage';
+import { MePage } from './pages/MePage';
+import { AlbumPage } from './pages/AlbumPage';
+import { SearchResultsPage } from './pages/SearchResultsPage';
+import { AuthProvider } from './context/auth/AuthContext/AuthProvider';
 import { Routes, Route } from 'react-router-dom';
-import './App.css';
 import Layout from './shared/Layout';
-import Home from './pages/Home';
-import SignIn from './pages/SignIn';
-import { Me } from './pages/Me';
 import PrivateRoutes from './utils/PrivateRoutes';
-import { AuthProvider } from './context/AuthContext/AuthProvider';
-import SearchResults from './pages/SearchResults';
-import Artist from './pages/Artist';
-import Album from './pages/Album';
+import './App.css';
 
 export default function App() {
   return (
     <AuthProvider>
       <Routes>
-        <Route path="/sign-in" element={ <SignIn /> } />
+        <Route path="/sign-in" element={ <SignInPage /> } />
           <Route path="/" element={ <PrivateRoutes /> }>
-            <Route  element={ <Layout /> }>
-              <Route path="/" index element={ <Home /> } />
-              <Route path="/me" element={ <Me /> }  />
+            <Route element={ <Layout /> }>
+              <Route path="/" index element={ <HomePage /> } />
+              <Route path="/me" element={ <MePage /> }  />
               <Route path="/search">
-                <Route path="results" element={ <SearchResults /> } />
+                <Route path="results" element={ <SearchResultsPage /> } />
               </Route>
-              <Route path="/artist/:id" element={ <Artist /> } />
-              <Route path="/album/:id" element={ <Album /> } />
+              <Route path="/artist/:id" element={ <ArtistPage /> } />
+              <Route path="/album/:id" element={ <AlbumPage /> } />
           </Route>
         </Route>
       </Routes>

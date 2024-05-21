@@ -2,16 +2,14 @@ import { Link, useNavigate } from 'react-router-dom';
 import { Album as AlbumDTO} from '../../../model/Album/Album'
 import { getYear } from '../../../utils/formatDate'
 
-
-function Album({ album, artistId }: { album: AlbumDTO, artistId: string }) {
+export function AlbumDemonstration({ album, artistId }: { album: AlbumDTO, artistId?: string }) {
   const navigate = useNavigate()
   const goToAlbumPage = (albumId: string) => {
     navigate(`/album/${albumId}`, 
       { 
-        state: artistId
+        state: artistId,
       }
-    )
-    console.log(albumId, artistId)
+    );
   };
 
   return (
@@ -55,5 +53,3 @@ function Album({ album, artistId }: { album: AlbumDTO, artistId: string }) {
     </div>
   )
 }
-
-export default Album

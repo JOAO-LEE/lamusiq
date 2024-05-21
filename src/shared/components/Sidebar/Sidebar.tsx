@@ -1,7 +1,7 @@
-import Search from './Search/Search'
-import CosmeticButtons from "../../../components/ComesticButtons/CosmeticButtons";
-import UserActions from "./UserActions/UserActions";
-import Playlists from "./Playlists/Playlists";
+import Search from "./components/Search/Search";
+import CosmeticButtons from "./components/ComesticButtons/CosmeticButtons";
+import UserActions from "./components/UserActions/UserActions";
+import Playlists from "./components/Playlists/Playlists";
 
 export default function Sidebar() {
 

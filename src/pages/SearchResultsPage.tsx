@@ -7,7 +7,7 @@ import Albums from "../components/SearchResults/Albums";
 import Playlists from "../components/SearchResults/Playlists";
 import BestResults from "../components/SearchResults/BestResults/BestResults";
 
-function SearchResults() {
+export function SearchResultsPage() {
   const searchParams = useSearchParams();
   const searchTerm = searchParams[0].get('q')?.trim();
   const auth = useAuth();
@@ -36,7 +36,7 @@ function SearchResults() {
       const searchResults: SearchResultsDTO  = await response.json();
   
       
-      setSearchResults(searchResults)
+      setSearchResults(searchResults);
       setLoadingSearchResults(false);
       } catch (error) {
         console.log(error)
@@ -44,7 +44,7 @@ function SearchResults() {
       }
     }
 
-    getSearchResults()
+    getSearchResults();
 
   }, [searchTerm]);
 
@@ -72,5 +72,3 @@ function SearchResults() {
     </section>
   )
 }
-
-export default SearchResults;

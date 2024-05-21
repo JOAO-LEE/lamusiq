@@ -1,6 +1,4 @@
-import { SearchResult } from "../../model/Search/SearchResults";
-
-export const getArtist = async (id: string, token: string): Promise<SearchResult | undefined> => {
+export const getArtist = async (id: string, token: string) => {
   if (id && token) {
     try {
       const response = await fetch(`https://api.spotify.com/v1/artists/${id}`,

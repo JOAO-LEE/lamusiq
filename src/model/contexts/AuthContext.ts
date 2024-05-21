@@ -1,5 +1,5 @@
 import { Session, User } from "@supabase/supabase-js";
-import { SpotifyTokenResponse } from "./SpotifyTokenResponse";
+import { SpotifyTokenResponse } from "../Spotify/SpotifyTokenResponse";
 
 export interface AuthContext {
   session: Session | null | undefined 

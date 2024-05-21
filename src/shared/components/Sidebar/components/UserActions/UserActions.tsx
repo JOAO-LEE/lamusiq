@@ -1,6 +1,6 @@
 import { Home, Heart, UserRound, Search } from 'lucide-react'
 import { useContext } from 'react'
-import { SearchContext } from '../../../../context/SearchContext/SearchContext'
+import { SearchContext } from "../../../../../context/SearchContext/SearchContext"
 
 function UserActions() {
   const { handleSearch } = useContext(SearchContext);

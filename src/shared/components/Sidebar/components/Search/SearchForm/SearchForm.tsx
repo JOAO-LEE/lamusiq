@@ -1,7 +1,7 @@
-import { CircleX } from 'lucide-react'
-import { FormEvent, useContext, useState } from 'react'
-import { useNavigate } from 'react-router-dom';
-import { SearchContext } from '../../../../../context/SearchContext/SearchContext';
+import { CircleX } from "lucide-react";
+import { FormEvent, useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { SearchContext } from "../../../../../../context/SearchContext/SearchContext";
 
 function SearchForm() {
   const {handleSearch, isSearchOpen} = useContext(SearchContext)
@@ -11,7 +11,7 @@ function SearchForm() {
   const getSearchResults = async (e: FormEvent): Promise<void> => {
     e.preventDefault();  
     if (!search) return;
-    handleSearch()
+    handleSearch();
     navigate(`/search/results?q=${search.trim()}`);
   };
 

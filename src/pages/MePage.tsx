@@ -5,7 +5,7 @@ import { useAuth } from "../hooks/useAuth";
 import PhotoAndInfo from "../components/Profile/PhotoAndInfo/PhotoAndInfo";
 import AccountInfo from "../components/Profile/AccountInfo/AccountInfo";
 
-export function Me() {
+export function MePage() {
   const auth = useAuth();
   console.log(auth?.user)
   const navigate = useNavigate();

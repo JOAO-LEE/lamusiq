@@ -1,8 +1,8 @@
 import ActionButtons from "../components/ActionButtons/ActionButtons"
-import AlbumSuggestions from "../components/AlbumSuggestions/AlbumSuggestions"
+import AlbumSuggestions from "../components/Album/Suggestions/AlbumSuggestions"
 import PlaylistsSuggestions from "../components/PlaylistsSuggestions/PlaylistsSuggestions"
 
-function Home() {  
+export function HomePage() {  
   return (
     <section className="p-6 mb-28 sm:mb-24 xl:mb-0">
       <ActionButtons />
@@ -11,5 +11,3 @@ function Home() {
     </section>
   )
 }
-
-export default Home

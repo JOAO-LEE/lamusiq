@@ -4,6 +4,7 @@ import Loading from "../components/Loading/Loading";
 
 function PrivateRoutes() {
   const auth = useAuth();
+  console.log(auth)
 
   if (auth?.isLoading) {
     return <Loading />

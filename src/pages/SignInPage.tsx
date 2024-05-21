@@ -1,11 +1,12 @@
-import { Link, useNavigate } from "react-router-dom"
-import supabase from "../config/supabaseConfig"
+import { Link, useNavigate } from "react-router-dom";
+import supabase from "../config/supabaseConfig";
 import { FormEvent, useEffect } from "react";
 import { useAuth } from "../hooks/useAuth";
 
-function SignIn() {
+export function SignInPage() {
   const auth = useAuth();
   const navigate = useNavigate();
+  console.log(auth)
 
   useEffect(() => {
     if (auth?.session) {
@@ -15,7 +16,14 @@ function SignIn() {
 
   const handleSpotifySignIn = async (e: FormEvent): Promise<void> => {
     e.preventDefault();
-    supabase.auth.signInWithOAuth({ provider: "spotify", options: { redirectTo: "/" } });
+    const { error } = await supabase.auth.signInWithOAuth({
+      provider: 'spotify',
+      options: {
+        redirectTo: "/",
+
+      }
+    });
+    if (error) console.log('Error: ', error.message);
   }
 
   const handleGoogleSignIn = async (e: FormEvent): Promise<void> => {
@@ -62,5 +70,3 @@ function SignIn() {
     </>
   )
 }
-
-export default SignIn

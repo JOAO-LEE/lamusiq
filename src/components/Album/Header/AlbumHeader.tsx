@@ -1,6 +1,6 @@
-import React from 'react'
-import { Album } from '../../model/Album/Album'
-import { getYear } from '../../utils/formatDate'
+import { Album } from '../../../model/Album/Album'
+import { getYear } from '../../../utils/formatDate'
+// import { Artist } from '../../model/Artist/Artist'
 
 function AlbumHeader({ album }: { album: Album }) {
   return (

@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { authContext } from "./AuthContext";
-import supabase from "../../config/supabaseConfig";
+import supabase from "../../../config/supabaseConfig";
 import { Session, User } from "@supabase/supabase-js";
-import { getSpotifyToken } from "../../services/spotify";
-import { SpotifyTokenResponse } from "../../model/SpotifyTokenResponse";
+import { getSpotifyToken } from "../../../services/spotify";
+import { SpotifyTokenResponse } from "../../../model/Spotify/SpotifyTokenResponse";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const AuthProvider = ({ children }: any) => {
@@ -14,16 +14,22 @@ export const AuthProvider = ({ children }: any) => {
 
   useEffect(() => {
     const setData = async () => {
-      const { data: { session }, error } = await supabase.auth.getSession();
-      if (error) throw error;
-      setSession(session);
-      setUser(session?.user);
+      try {
+        const { data: { session }, error } = await supabase.auth.getSession();
+        if (error) throw error;
 
-      if (!spotifyToken) {
-        const token = await getSpotifyToken();
-        setSpotifyToken(token);
-        setIsLoading(false);
-        return;
+        setSession(session);
+        setUser(session?.user);
+  
+        if (!spotifyToken) {
+          const token = await getSpotifyToken();
+          setSpotifyToken(token);
+          setIsLoading(false);
+          return;
+        }
+        
+      } catch (error) {
+        console.log(error)
       }
     };
 
@@ -34,15 +40,17 @@ export const AuthProvider = ({ children }: any) => {
         setSpotifyToken(undefined);
         return;
       }
-
+      
       if (session) {
         setSession(session);
         setUser(session?.user);
       }
+
       setIsLoading(false);
     });
-
+    
     setData();
+    console.log('calling function')
     
     return () => {
       subscription.unsubscribe();
