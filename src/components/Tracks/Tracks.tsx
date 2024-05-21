@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Track from "./Track/Track";
-import { Tracks as TracksDTO } from "../../model/Tracks/Tracks";
+import { Tracks as TracksDTO } from "../../model/Track/Track";
 
 
 function Tracks({tracks}: {tracks: Array<TracksDTO>}) {

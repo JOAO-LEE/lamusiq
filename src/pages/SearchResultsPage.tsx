@@ -33,9 +33,8 @@ export function SearchResultsPage() {
       if (response.status === 401) {
         throw new Error("An error occurred");
       }
+
       const searchResults: SearchResultsDTO  = await response.json();
-  
-      
       setSearchResults(searchResults);
       setLoadingSearchResults(false);
       } catch (error) {

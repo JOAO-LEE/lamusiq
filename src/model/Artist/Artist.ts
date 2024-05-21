@@ -1,25 +1,29 @@
-import { Tracks } from "../Tracks/Tracks"
-import { Album } from  "../Album/Album"
-import { ImagesSearchResult } from "../Search/SearchResults"
+import { Track } from "../Track/Track";
+import { Album } from  "../Album/Album";
+import { Item, ItemImages } from "../common/Common";
 
-export interface Artist {
+export interface Artist extends Item {
   id: string
   name: string
-  total_listeners: number
-  image: string
+  followers: {
+    total: number
+  }
 }
 
+export interface ArtistResult {
+  artists: Array<Artist>
+}
 
 export interface RelatedArtist {
   type: string
-  images: ImagesSearchResult
+  images: ItemImages
   id: string
   name: string
 }
 
-export interface ArtistPage extends Artist {
+export interface ArtistPageInfo extends Artist {
   id: string
-  tracks: Array<Tracks>
+  tracks: Array<Track>
   discography: Array<Album>
   related_artists?: Array<RelatedArtist> 
   appears_on?: Array<Album>

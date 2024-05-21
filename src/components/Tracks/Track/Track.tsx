@@ -1,4 +1,4 @@
-import { Tracks } from "../../../model/Tracks/Tracks";
+import { Tracks } from "../../../model/Track/Track";
 import { getDuration } from "../../../utils/getDuration";
 
 function Track({ track, showImage, trackNum }: { track: Tracks, showImage?: boolean, trackNum?: number }) {

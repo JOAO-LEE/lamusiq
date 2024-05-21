@@ -4,7 +4,7 @@ import { useAuth } from "../hooks/useAuth";
 import { getAlbumById, getAlbumTracks } from "../services/Album/Album";
 import { getArtist, getArtistAlbums } from "../services/Artist/getArtist";
 import { Album as AlbumDTO} from '../model/Album/Album'
-import { Tracks } from "../model/Tracks/Tracks";
+import { Tracks } from "../model/Track/Track";
 import { getYear } from "../utils/formatDate";
 import Track from "../components/Tracks/Track/Track";
 import AlbumHeader from "../components/Album/Header/AlbumHeader";
@@ -46,7 +46,7 @@ export function AlbumPage() {
   }, [param.id, auth?.spotifyToken?.access_token]);
 
   return (
-    <section className="w-full text-zinc-300 mb-[98rem] xl:mb-56">
+    <section className="w-full text-zinc-300 mb-[110rem] xl:mb-56">
       <div className="flex flex-col gap-2 relative">
         <img 
         src={album?.images[0]?.url} 

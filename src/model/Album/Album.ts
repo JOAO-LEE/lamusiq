@@ -1,15 +1,15 @@
 import { Artist } from "../Artist/Artist"
-import { ImagesSearchResult } from "../Search/SearchResults"
+import { Item } from "../common/Common"
 
-export interface Album {
-  id: string
-  name: string
+export interface Album extends Item {
   album_type: string
   total_tracks: number
-  images: ImagesSearchResult
-  type: string
   release_date: string
   artists: Array<Artist>
   album_group: string
-  label: string
+  label?: string
+}
+
+export interface ArtistAlbumsResponse {
+  items: Array<Album>
 }
