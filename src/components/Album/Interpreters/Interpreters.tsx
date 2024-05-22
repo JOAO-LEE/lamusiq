@@ -1,24 +1,26 @@
 import { Link } from "react-router-dom";
 import { Album } from "../../../model/Album/Album";
+import { Track } from "../../../model/Track/Track";
 
-export function Interpreters({ album }: { album: Album }) {
+export function Interpreters({ media }: { media: Album | Track }) {
+  console.log(media)
   return (
     <>
      {
-      album?.artists.length > 1
+      media?.artists.length > 1
       ?
         (
           <>
             {
-              album.artists.map((artist, index) => (
-                <p key={index} className="hover:underline"><Link to={`/artist/${artist.id}`}>{artist.name}</Link>{album.artists.length - 1 !== index && <span>,</span>}</p>
+              media.artists.map((artist, index) => (
+                <p key={index} className="hover:underline hover:text-zinc-200 transition-all"><Link to={`/artist/${artist.id}`}>{artist.name}</Link>{media.artists.length - 1 !== index && <span>,</span>}</p>
               ))
             }
           </>
         )
       : 
         (
-          <Link to={`/artist/${album?.artists[0]?.id}`}>{album?.artists[0]?.name}</Link>
+          <p className="hover:underline hover:text-zinc-200 transition-all"><Link to={`/artist/${media?.artists[0]?.id}`}>{media?.artists[0]?.name}</Link></p>
         )
       }
     </>

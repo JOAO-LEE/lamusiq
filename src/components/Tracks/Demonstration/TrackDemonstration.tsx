@@ -1,11 +1,9 @@
 import { PageType } from "../../../enum/PageType.enum";
 import { Track } from "../../../model/Track/Track";
 import { getDuration } from "../../../utils/getDuration";
+import { Interpreters } from "../../Album/Interpreters/Interpreters";
 
 export function TrackDemonstration({ track, trackIndex, pageType }: { track: Track, trackIndex: number, pageType: PageType }) {
-  const maxArtistsToShow = 4;
-  const artistsToShow = track.artists.slice(0, maxArtistsToShow);
-  console.log(track)
   return (
     <div className="flex justify-between text-zinc-300 items-center">
       <div className="flex gap-4 p-2">
@@ -44,27 +42,7 @@ export function TrackDemonstration({ track, trackIndex, pageType }: { track: Tra
                 <span className="bg-zinc-300 text-zinc-800 text-xs h-min font-extralight w-3 text-center p-0.5">E</span>
               )
           }
-          {
-            track.artists.length === 1 
-            ?
-              (
-                <>
-                  <p className="text-zinc-400">{track?.artists[0]?.name}</p>
-                </>
-              )
-            :
-              (
-                <div className="flex">
-                  {
-                    artistsToShow.map((artist, index) => (
-                      <p key={index} className="">
-                        {artist.name}{index < (artistsToShow.length - 1) ? <span>,&nbsp;</span> : <span>{track.artists.length > artistsToShow.length && "..."}</span>}
-                      </p>
-                    ))
-                  }
-                </div>
-              )
-          }
+          <Interpreters media={track}/>
           </div>
         </div>
       </div>
@@ -72,3 +50,10 @@ export function TrackDemonstration({ track, trackIndex, pageType }: { track: Tra
     </div>
   )
 }
+// {
+//   artistsToShow.map((artist, index) => (
+//     <p key={index} className="">
+//       {artist.name}{index < (artistsToShow.length - 1) ? <span>,&nbsp;</span> : <span>{track.artists.length > artistsToShow.length && "..."}</span>}
+//     </p>
+//   ))
+// }

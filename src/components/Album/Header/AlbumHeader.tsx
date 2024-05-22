@@ -16,7 +16,7 @@ function AlbumHeader({ album }: { album: Album }) {
         <span className="text-xs">{album?.album_type.replace(album?.album_type[0], album?.album_type[0].toUpperCase())}</span>
         <h1 className="font-extrabold text-7xl  w-full line-clamp-1">{album?.name}</h1>
         <div className="flex text-xs gap-1.5 p-1">
-          <Interpreters album={album} />
+          <Interpreters media={album} />
           <span>•</span>
           <span>{album?.release_date && getYear(album?.release_date)}</span>
           <span>•</span>

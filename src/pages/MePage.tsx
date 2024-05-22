@@ -1,13 +1,10 @@
 import { LogOut } from "lucide-react";
 import supabase from "../config/supabaseConfig";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../hooks/useAuth";
 import PhotoAndInfo from "../components/Profile/PhotoAndInfo/PhotoAndInfo";
 import AccountInfo from "../components/Profile/AccountInfo/AccountInfo";
 
 export function MePage() {
-  const auth = useAuth();
-  console.log(auth?.user)
   const navigate = useNavigate();
   const signOut = () => {
     supabase.auth.signOut();

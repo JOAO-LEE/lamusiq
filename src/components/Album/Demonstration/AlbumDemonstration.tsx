@@ -2,8 +2,9 @@ import { Link, useNavigate } from "react-router-dom";
 import { Album } from "../../../model/Album/Album";
 import { getYear } from "../../../utils/formatDate";
 import { Interpreters } from "../Interpreters/Interpreters";
+import { PageType } from "../../../enum/PageType.enum";
 
-export function AlbumDemonstration({ album }: { album: Album }) {
+export function AlbumDemonstration({ album, pageType }: { album: Album, pageType: PageType }) {
   const navigate = useNavigate();
 
   const goToAlbumPage = (albumId: string) => {
@@ -31,7 +32,17 @@ export function AlbumDemonstration({ album }: { album: Album }) {
           <span>{getYear(album.release_date)}</span>
           <span>•</span>
           <div className="text-xs flex gap-1 truncate">
-            <Interpreters album={album}/>
+            {
+              pageType === PageType.ARTIST 
+              ?
+                (
+                  <p className="hover:underline hover:text-zinc-200 transition-all"><Link to={`/album/${album.id}`}>{album.album_type.replace(album.album_type[0], album.album_type[0].toUpperCase())}</Link></p>
+                )
+              :
+                (
+                  <Interpreters media={album}/>
+                )
+            }
           </div>
         </div>
       </div>

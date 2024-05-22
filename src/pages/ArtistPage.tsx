@@ -14,7 +14,7 @@ export function ArtistPage() {
   const auth = useAuth();
   const param = useParams();
   const [artistInfo, setArtistInfo] = useState<ArtistPageInfo>();
-  const [loadingArtist, setLoadingArtist] = useState<boolean>(true)
+  const [loadingArtist, setLoadingArtist] = useState<boolean>(true);
   
   useEffect(() => {
     const getArtistInfo = async (id: string, token: string) => {
@@ -35,7 +35,7 @@ export function ArtistPage() {
             appears_on: artistAlbums.filter((artistAlbum: Album) => artistAlbum.album_group === "appears_on"),
             related_artists: relatedArtists,
           });
-
+          
           setLoadingArtist(false);
         }
       } catch (error) {
@@ -61,7 +61,7 @@ export function ArtistPage() {
             <section className="rounded-md mb-96 xl:mb-20 p-1.5 text-zinc-200">
               <div className="flex flex-col gap-2 relative">
                 <img 
-                src={artistInfo?.images[0].url} 
+                src={artistInfo?.images[0]?.url} 
                 alt="" 
                 className="rounded-md object-fill brightness-75 hover:brightness-100 transition duration-500"
                 />
@@ -71,7 +71,7 @@ export function ArtistPage() {
                     <span className="drop-shadow-lg p-2">{artistInfo?.followers.total?.toLocaleString('en-US')} monthly listeners</span>
                     <section className="bg-zinc-900 p-3 flex flex-col gap-3">
                       {
-                        artistInfo?.tracks.length 
+                        !!artistInfo?.tracks.length 
                         &&
                           (
                             <div className="max-w-[80%]">
@@ -83,13 +83,14 @@ export function ArtistPage() {
                           ) 
                       }
                       {
-                        artistInfo?.discography.length
+                        !!artistInfo?.discography.length
                         &&
                           (
                             <div>
                               <h2 className="text-xl font-bold">Discography</h2>
                               <div className="flex gap-1 overflow-x-auto scrollbar-none">
                                 <AlbumsMapper
+                                pageType={PageType.ARTIST}
                                 albums={artistInfo.discography}
                                 />
                               </div>
@@ -97,27 +98,29 @@ export function ArtistPage() {
                           )
                       }
                       {
-                        artistInfo?.related_artists?.length 
+                        !!artistInfo?.related_artists?.length 
                         &&
                           (
                             <div>
                               <h2 className="text-xl font-bold">Fans also like</h2>
                               <div className="flex gap-2 overflow-x-auto scrollbar-none p-1.5">
                                 <ArtistsMapper 
-                                artists={artistInfo.related_artists} />
+                                artists={artistInfo.related_artists} 
+                                />
                               </div>
                             </div>
                           )
                       }
                       {
-                        artistInfo?.appears_on?.length 
+                        !!artistInfo?.appears_on?.length 
                         &&
                           (
                             <div>
                               <h2 className="text-xl font-bold">Appears on</h2>
                               <div className="flex gap-2 overflow-x-auto scrollbar-none p-1.5">
                                 <AlbumsMapper 
-                                albums={artistInfo.appears_on} />
+                                albums={artistInfo.appears_on} 
+                                />
                               </div>
                             </div>
                           )

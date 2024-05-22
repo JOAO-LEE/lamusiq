@@ -9,6 +9,7 @@ export interface Item {
 export interface CommonSearchResponse<T> {
   next: string
   items: Array<T> | []
+  total: number
 }
 
 export type ItemImages = Array<{height: number, width: number, url: string}>

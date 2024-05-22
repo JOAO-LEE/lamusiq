@@ -22,7 +22,6 @@ export function MoreOf({ album }: { album: Album | undefined }) {
     };
 
     if (album && auth?.spotifyToken?.access_token) {
-      // const albumsFiltered = 
       getMoreOf(album.artists, auth.spotifyToken.access_token)
     }
 

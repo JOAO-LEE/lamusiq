@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { TrackDemonstration } from "../Demonstration/TrackDemonstration";
 import { Track } from "../../../model/Track/Track";
 import { PageType } from "../../../enum/PageType.enum";
@@ -6,11 +6,19 @@ import { PageType } from "../../../enum/PageType.enum";
 
 export function TrackMapper({ tracks, pageType }: { tracks: Array<Track>, pageType: PageType}) {
   const [showAllTracks, setShowAllTracks] = useState<boolean>(false);
-  console.log(tracks)
+  const [maxTracks, setMaxTracks] = useState<Array<Track>>();
+
+  useEffect(() => {
+    const MAX_TRACKS = 6
+    if (tracks) {
+      setMaxTracks(tracks.slice(0, MAX_TRACKS));
+    }
+  }, []);
+
   return (
     <>
       {
-        tracks?.length 
+        !!(tracks?.length && maxTracks?.length)
         && 
           (
             <>
@@ -35,7 +43,7 @@ export function TrackMapper({ tracks, pageType }: { tracks: Array<Track>, pageTy
                 (
                   <>
                     {
-                      tracks.slice(0, 6).map((track, index) => (
+                      maxTracks?.map((track, index) => (
                         <TrackDemonstration 
                         trackIndex={index}
                         pageType={pageType}
@@ -47,10 +55,16 @@ export function TrackMapper({ tracks, pageType }: { tracks: Array<Track>, pageTy
                   </>
                 )
               }
+              {
+                tracks.length > maxTracks?.length
+                && 
+                  (
+                    <button className="text-sm w-24 text-start" onClick={() => setShowAllTracks(!showAllTracks)}>{!showAllTracks ? "See more" : "Show less"}</button>
+                  )
+              }
             </>
           )
       }
-      <button className="text-sm w-24 text-start" onClick={() => setShowAllTracks(!showAllTracks)}>{!showAllTracks ? "See more" : "Show less"}</button>
     </>
   )
 }
