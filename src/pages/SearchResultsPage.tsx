@@ -73,7 +73,9 @@ export function SearchResultsPage() {
                       &&
                         (
                           <>
-                            <BestResults searchResults={searchResults!}/>
+                            <BestResults 
+                            searchResults={searchResults!}
+                            />
                           </>
                         ) 
                     }
@@ -83,7 +85,9 @@ export function SearchResultsPage() {
                         (
                           <Scroller title="Albums">
                             <AlbumsMapper 
-                            albums={searchResults.albums.items} />
+                            albums={searchResults.albums.items} 
+                            // artistId={}
+                            />
                            </Scroller>
                         )
                     }
@@ -93,7 +97,8 @@ export function SearchResultsPage() {
                         (
                           <Scroller title="Artists">                            
                             <ArtistsMapper 
-                            artists={searchResults.artists.items} />
+                            artists={searchResults.artists.items} 
+                            />
                           </Scroller>
                         )
                     }
@@ -103,7 +108,8 @@ export function SearchResultsPage() {
                         ( 
                           <Scroller title="Playlists">                            
                             <PlaylistsMapper 
-                            playlists={searchResults.playlists.items} />
+                            playlists={searchResults.playlists.items} 
+                            />
                           </Scroller>
                         )
                     }
@@ -111,21 +117,9 @@ export function SearchResultsPage() {
                 </section>
               )
             }
-           
-            </>
+          </>
         )
       }
     </>   
   )
 }
-
-  {/* {(searchResults.artists.items.length > 0 && searchResults.tracks.items.length > 0) && <BestResults searchResults={searchResults}/>}
-              {searchResults.albums?.items.length > 0 && <Albums searchResults={searchResults} />}
-              {searchResults.artists?.items.length > 0 && <Artists searchResults={searchResults} />}
-              {searchResults.playlists?.items.length > 0 && <Playlists searchResults={searchResults} />} */}
-
-              // : 
-              //   (
-              //     <h1 className="text-4xl text-zinc-50">No results for"<span className="text-green-400">{searchParams[0].get('q')}</span>" :(</h1> 
-              //   )
-            // }

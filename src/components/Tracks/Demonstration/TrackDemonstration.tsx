@@ -1,30 +1,39 @@
-import { Tracks } from "../../../model/Track/Track";
+import { PageType } from "../../../enum/PageType.enum";
+import { Track } from "../../../model/Track/Track";
 import { getDuration } from "../../../utils/getDuration";
 
-function Track({ track, showImage, trackNum }: { track: Tracks, showImage?: boolean, trackNum?: number }) {
+export function TrackDemonstration({ track, trackIndex, pageType }: { track: Track, trackIndex: number, pageType: PageType }) {
   const maxArtistsToShow = 4;
   const artistsToShow = track.artists.slice(0, maxArtistsToShow);
+  console.log(track)
   return (
     <div className="flex justify-between text-zinc-300 items-center">
-      <div className="flex gap-2 items-center p-4 space-x-2">
-        { trackNum 
-          && 
-            (
-              <p className="text-lg text-zinc-400">{trackNum}</p>
-            )
-        }
-        {
+      <div className="flex gap-4 p-2">
+        <div className="flex p-4 items-center w-5 justify-center">
+          <div>
+            <p className="text-lg">
+              {
+                pageType === PageType.ALBUM 
+                ? 
+                track.track_number 
+                : 
+                trackIndex + 1
+              }
+            </p>
+          </div>
+        </div> 
+        {/* {
           showImage 
           && 
             (
               <img 
-              src={track?.album?.images[0].url} 
+              src={track?.images[0]?.url ?? ""} 
               height={track?.album?.images[0].height} 
               width={track?.album?.images[0].width} 
               className="size-10 rounded"
               />
             )
-        }
+        } */}
         <div className="flex flex-col gap-1">
           <span>{track.name}</span>
           <div className="flex items-end gap-2">
@@ -63,5 +72,3 @@ function Track({ track, showImage, trackNum }: { track: Tracks, showImage?: bool
     </div>
   )
 }
-
-export default Track

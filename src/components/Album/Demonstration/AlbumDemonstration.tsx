@@ -1,15 +1,13 @@
-import { Link, useNavigate } from 'react-router-dom';
-import { Album as AlbumDTO} from '../../../model/Album/Album'
-import { getYear } from '../../../utils/formatDate'
+import { Link, useNavigate } from "react-router-dom";
+import { Album } from "../../../model/Album/Album";
+import { getYear } from "../../../utils/formatDate";
+import { Interpreters } from "../Interpreters/Interpreters";
 
-export function AlbumDemonstration({ album, artistId }: { album: AlbumDTO, artistId?: string }) {
-  const navigate = useNavigate()
+export function AlbumDemonstration({ album }: { album: Album }) {
+  const navigate = useNavigate();
+
   const goToAlbumPage = (albumId: string) => {
-    navigate(`/album/${albumId}`, 
-      { 
-        state: artistId,
-      }
-    );
+    navigate(`/album/${albumId}`);
   };
 
   return (
@@ -24,29 +22,16 @@ export function AlbumDemonstration({ album, artistId }: { album: AlbumDTO, artis
         />
       </div>
       <div className="flex flex-col gap-1 w-48">
-        <span className="text-sm truncate cursor-pointer hover:underline" onClick={() => goToAlbumPage(album.id)}>{album.name}</span>
+        <span 
+        className="text-sm truncate cursor-pointer hover:underline" 
+        onClick={() => goToAlbumPage(album.id)}>
+          {album.name}
+        </span>
         <div className="flex gap-1 text-xs text-gray-500">
           <span>{getYear(album.release_date)}</span>
           <span>•</span>
-          <div className="text-xs flex truncate">
-            {
-              album.artists.length > 1 
-              ? 
-                (
-                  album.artists.map((artist, index) => (
-                  
-                      <Link to={`/artist/${artist.id}`} key={artist.id} className="truncate">
-                        {artist.name}{index < 1 && <span>,&nbsp;</span>}
-                      </Link>
-                  ))
-                )
-              :
-                (
-                  <Link to={`/artist/${artistId}`} className='hover:underline'>
-                    {album.artists[0].name}
-                  </Link>
-                )
-            } 
+          <div className="text-xs flex gap-1 truncate">
+            <Interpreters album={album}/>
           </div>
         </div>
       </div>

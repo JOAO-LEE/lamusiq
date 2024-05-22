@@ -1,6 +1,6 @@
-import { Album } from '../../../model/Album/Album'
-import { getYear } from '../../../utils/formatDate'
-// import { Artist } from '../../model/Artist/Artist'
+import { Album } from "../../../model/Album/Album";
+import { getYear } from "../../../utils/formatDate";
+import { Interpreters } from "../Interpreters/Interpreters";
 
 function AlbumHeader({ album }: { album: Album }) {
   return (
@@ -14,9 +14,9 @@ function AlbumHeader({ album }: { album: Album }) {
       />
       <div className="flex flex-col justify-between p-3">
         <span className="text-xs">{album?.album_type.replace(album?.album_type[0], album?.album_type[0].toUpperCase())}</span>
-        <h1 className="font-extrabold text-7xl">{album?.name}</h1>
+        <h1 className="font-extrabold text-7xl  w-full line-clamp-1">{album?.name}</h1>
         <div className="flex text-xs gap-1.5 p-1">
-          <span>{album?.artists[0].name}</span>
+          <Interpreters album={album} />
           <span>•</span>
           <span>{album?.release_date && getYear(album?.release_date)}</span>
           <span>•</span>

@@ -8,6 +8,7 @@ export interface Album extends Item {
   artists: Array<Artist>
   album_group: string
   label?: string
+  // images: 
 }
 
 export interface ArtistAlbumsResponse {

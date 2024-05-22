@@ -1,14 +1,17 @@
-import { Album as AlbumDTO } from "../../../model/Album/Album";
+import { Album } from "../../../model/Album/Album";
 import { AlbumDemonstration } from "../Demonstration/AlbumDemonstration";
 
-export function AlbumsMapper({ albums, artistId }: { albums: Array<AlbumDTO>, artistId?: string }) {
+export function AlbumsMapper({ albums }: { albums: Array<Album> }) {
   return (
     <>
         {
           albums.map((record, index) => {  
             if (record.images[0]?.url) {
               return (
-                <AlbumDemonstration key={index} album={record} artistId={artistId}/>
+                <AlbumDemonstration 
+                key={index} 
+                album={record} 
+                />
               )
             }     
           })

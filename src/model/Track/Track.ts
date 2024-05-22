@@ -1,6 +1,6 @@
 import { Album } from "../Album/Album";
 import { Artist } from "../Artist/Artist";
-import { Item, CommonSearchResponse } from "../common/Common";
+import { Item, ItemImages } from "../common/Common";
 
 export interface Track extends Item { 
   duration_ms: number, 
@@ -8,6 +8,8 @@ export interface Track extends Item {
   artists: Array<Artist>, 
   preview: string  
   album: Album
+  images: ItemImages
+  track_number: number
 }
 
 export interface TracksResult {
@@ -17,7 +19,7 @@ export interface TracksResult {
 export interface TracksTreatedResult {
   explicit: boolean
   album?: {
-    images: CommonSearchResponse
+    images: ItemImages
   }
   name: string
   artist: string
