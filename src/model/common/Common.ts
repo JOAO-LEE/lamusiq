@@ -8,7 +8,7 @@ export interface Item {
 
 export interface CommonSearchResponse<T> {
   next: string
-  items: Array<T> | []
+  items?: Array<T> | []
   total: number
 }
 

@@ -3,16 +3,17 @@ import { TrackDemonstration } from "../Demonstration/TrackDemonstration";
 import { Track } from "../../../model/Track/Track";
 import { PageType } from "../../../enum/PageType.enum";
 
+const MAX_TRACKS = 6;
 
 export function TrackMapper({ tracks, pageType }: { tracks: Array<Track>, pageType: PageType}) {
   const [showAllTracks, setShowAllTracks] = useState<boolean>(false);
-  const [maxTracks, setMaxTracks] = useState<Array<Track>>();
+  const [maxTracks, setMaxTracks] = useState<Array<Track>>([]);
 
   useEffect(() => {
-    const MAX_TRACKS = 6
     if (tracks) {
-      setMaxTracks(tracks.slice(0, MAX_TRACKS));
+      setMaxTracks(tracks.slice(0, MAX_TRACKS))
     }
+
   }, []);
 
   return (
@@ -28,8 +29,9 @@ export function TrackMapper({ tracks, pageType }: { tracks: Array<Track>, pageTy
                 (
                   <>
                     {
-                      tracks.map((track, index) => (
-                        <TrackDemonstration 
+
+                      tracks.map((track, index) =>  (
+                        <TrackDemonstration
                         pageType={pageType}
                         trackIndex={index}
                         track={track} 
@@ -44,9 +46,9 @@ export function TrackMapper({ tracks, pageType }: { tracks: Array<Track>, pageTy
                   <>
                     {
                       maxTracks?.map((track, index) => (
-                        <TrackDemonstration 
-                        trackIndex={index}
+                        <TrackDemonstration
                         pageType={pageType}
+                        trackIndex={index}
                         track={track} 
                         key={index}
                         />
@@ -68,3 +70,9 @@ export function TrackMapper({ tracks, pageType }: { tracks: Array<Track>, pageTy
     </>
   )
 }
+
+// {
+//   isArrayTrackFromPlaylist(tracks) 
+//   ?
+
+// }

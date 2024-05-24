@@ -1,5 +1,6 @@
-import { Clock3 } from 'lucide-react';
-function AlbumMarkers() {
+import { Clock3 } from "lucide-react";
+
+export function MediaMarkers() {
   return (
     <div className="flex justify-between items-center border-b border-b-zinc-700 text-sm">
       <div className="flex gap-6 p-4">
@@ -11,4 +12,3 @@ function AlbumMarkers() {
   )
 }
 
-export default AlbumMarkers

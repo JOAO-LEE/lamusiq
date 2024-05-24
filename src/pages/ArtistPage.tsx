@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
-import { getArtist, getRelatedArtists, getTopTracks, getArtistAlbums } from "../services/Artist/getArtist";
+import { getArtist, getRelatedArtists, getTopTracks, getArtistAlbums } from "../services/Artist/Artist.ts";
 import { ArtistPageInfo } from "../model/Artist/Artist";
 import { TrackMapper } from "../components/Tracks/Mapper/TrackMapper";
 import { AlbumsMapper } from "../components/Album/Mapper/AlbumsMapper";
-import { ArtistsMapper } from "../components/Artists/Artists";
+import { ArtistsMapper } from "../components/Artists/ArtistsMapper.tsx";
 import { Album } from "../model/Album/Album";
 import { LoadingSpinner } from "../components/Loading/LoadingSpinner";
 import { PageType } from "../enum/PageType.enum";
@@ -118,7 +118,8 @@ export function ArtistPage() {
                             <div>
                               <h2 className="text-xl font-bold">Appears on</h2>
                               <div className="flex gap-2 overflow-x-auto scrollbar-none p-1.5">
-                                <AlbumsMapper 
+                                <AlbumsMapper
+                                pageType={PageType.ARTIST} 
                                 albums={artistInfo.appears_on} 
                                 />
                               </div>

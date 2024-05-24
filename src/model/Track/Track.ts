@@ -10,10 +10,15 @@ export interface Track extends Item {
   album: Album
   images: ItemImages
   track_number: number
+  added_at? : string
 }
 
 export interface TracksResult {
   tracks: Array<Track>
+}
+
+export interface TrackFromPlaylist {
+  track: Track
 }
 
 export interface TracksTreatedResult {

@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import { Album } from "../../model/Album/Album";
 import { AlbumsMapper } from "../Album/Mapper/AlbumsMapper";
-import { getArtistAlbums } from "../../services/Artist/getArtist";
+import { getArtistAlbums } from "../../services/Artist/Artist";
 import { useAuth } from "../../hooks/useAuth";
 import { Artist } from "../../model/Artist/Artist";
+import { PageType } from "../../enum/PageType.enum";
 
 export function MoreOf({ album }: { album: Album | undefined }) {
   const [moreOf, setMoreOf] = useState<[Array<Album> | undefined][]>();
@@ -30,7 +31,7 @@ export function MoreOf({ album }: { album: Album | undefined }) {
   return (
     <>
       {
-        moreOf?.length 
+        !!moreOf?.length 
         &&
           (
             <>
@@ -51,7 +52,8 @@ export function MoreOf({ album }: { album: Album | undefined }) {
                                     <>
                                     <h2 className="text-xl font-bold">More of {albums[0].artists[0].name}</h2>
                                       <div className="flex gap-1 overflow-x-auto scrollbar-none">
-                                        <AlbumsMapper 
+                                        <AlbumsMapper
+                                        pageType={PageType.ALBUM} 
                                         albums={albums} 
                                         />
                                       </div>

@@ -103,7 +103,7 @@ export const getArtistAlbums = async (id: string, token: string): Promise<Array<
     }
 
     const { items }: ArtistAlbumsResponse = await response.json();
-    console.log(items)
+    // console.log(items)
     return items;
 
   } catch (error) {

@@ -5,9 +5,10 @@ import { SearchResults } from "../model/Search/SearchResult";
 import { LoadingSpinner } from "../components/Loading/LoadingSpinner";
 import BestResults from "../components/BestResults/BestResults";
 import { AlbumsMapper } from "../components/Album/Mapper/AlbumsMapper";
-import { ArtistsMapper } from "../components/Artists/Artists";
+import { ArtistsMapper } from "../components/Artists/ArtistsMapper.tsx";
 import { PlaylistsMapper } from "../components/Playlists/PlaylistMapper";
 import Scroller from "../components/SearchResults/Scroller";
+import { PageType } from "../enum/PageType.enum";
 
 export function SearchResultsPage() {
   const searchParams = useSearchParams();
@@ -100,6 +101,7 @@ export function SearchResultsPage() {
                         (
                           <Scroller title="Albums">
                             <AlbumsMapper 
+                            pageType={PageType.SEARCH}
                             albums={searchResults.albums.items} 
                             />
                            </Scroller>

@@ -1,5 +1,6 @@
 export enum PageType {
   ALBUM,
   ARTIST,
-  SEARCH
+  SEARCH,
+  PLAYLIST
 }

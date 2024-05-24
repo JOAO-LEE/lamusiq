@@ -4,6 +4,7 @@ import { SignInPage } from './pages/SignInPage';
 import { MePage } from './pages/MePage';
 import { AlbumPage } from './pages/AlbumPage';
 import { SearchResultsPage } from './pages/SearchResultsPage';
+import { PlaylistPage } from './pages/PlaylistPage';
 import { AuthProvider } from './context/auth/AuthContext/AuthProvider';
 import { Routes, Route } from 'react-router-dom';
 import Layout from './shared/Layout';
@@ -24,6 +25,7 @@ export default function App() {
               </Route>
               <Route path="/artist/:id" element={ <ArtistPage /> } />
               <Route path="/album/:id" element={ <AlbumPage /> } />
+              <Route path="/playlist/:id" element={ <PlaylistPage /> } />
           </Route>
         </Route>
       </Routes>

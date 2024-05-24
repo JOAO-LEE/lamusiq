@@ -5,8 +5,8 @@ import { getAlbumById, getAlbumTracks } from "../services/Album/Album";
 import { Album as AlbumDTO} from '../model/Album/Album'
 import { Track } from "../model/Track/Track";
 import { getYear } from "../utils/formatDate";
-import AlbumHeader from "../components/Album/Header/AlbumHeader";
-import AlbumMarkers from "../components/Album/Markers/AlbumMarkers";
+import { MediaHeader } from "../components/Album/Media/MediaHeader/MediaHeader";
+import { MediaMarkers } from "../components/Album/Media/MediaMarkers/MediaMarkers";
 import { TrackMapper } from "../components/Tracks/Mapper/TrackMapper";
 import { PageType } from "../enum/PageType.enum";
 import { MoreOf } from "../components/MoreOf/MoreOf";
@@ -57,12 +57,12 @@ export function AlbumPage() {
                 className="object-cover brightness-75" 
                 />
                 <div className="flex flex-col absolute backdrop-blur-3xl w-full h-full gap-2">
-                  <AlbumHeader 
-                  album={album!}
+                  <MediaHeader
+                  media={album!}
                   />
                   <div className="bg-zinc-950 p-4 h-full">
-                    <AlbumMarkers />
-                    <div className="text-sm ">
+                    <MediaMarkers />
+                    <div className="text-sm">
                     {
                       albumTracks?.length
                       &&

@@ -1,5 +1,5 @@
 import { Album } from "../../model/Album/Album";
-import { Track, TracksResult } from "../../model/Track/Track";
+import { Track } from "../../model/Track/Track";
 import { CommonSearchResponse } from "../../model/common/Common";
 
 export const getAlbumById = async (id: string, token: string): Promise<Album | undefined> => {
