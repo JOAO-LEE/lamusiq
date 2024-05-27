@@ -7,7 +7,7 @@ import { Track } from "../model/Track/Track";
 import { getYear } from "../utils/formatDate";
 import { MediaHeader } from "../components/Media/MediaHeader/MediaHeader";
 import { MediaMarkers } from "../components/Media/MediaMarkers/MediaMarkers";
-import { TrackMapper } from "../components/Tracks/Mapper/TrackMapper";
+import { TrackMapper } from "../components/Track/Mapper/TrackMapper";
 import { PageType } from "../enum/PageType.enum";
 import { MoreOf } from "../components/MoreOf/MoreOf";
 import { LoadingSpinner } from "../components/Loading/LoadingSpinner";

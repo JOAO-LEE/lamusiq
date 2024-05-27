@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Playlist } from "../../model/Playlist/Playlist";
+import { Playlist } from "../../../model/Playlist/Playlist";
 
 export function PlaylistsMapper({ playlists }: { playlists: Array<Playlist> }) {
   return (

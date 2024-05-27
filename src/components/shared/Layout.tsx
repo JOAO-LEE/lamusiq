@@ -1,7 +1,7 @@
 import Sidebar from './components/Sidebar/Sidebar';
 import Footer from './components/Footer/Footer';
 import { Outlet } from 'react-router-dom';
-import { SearchProvider } from '../context/SearchContext/SearchProvider';
+import { SearchProvider } from '../../context/SearchContext/SearchProvider';
 
 function Layout() {
   return (

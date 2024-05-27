@@ -5,10 +5,10 @@ import { SearchResults } from "../model/Search/SearchResult";
 import { getSearch } from "../services/Search/Search";
 import { LoadingSpinner } from "../components/Loading/LoadingSpinner";
 import { BestResults } from "../components/BestResults/BestResults.tsx";
-import { AlbumsMapper } from "../components/Album/Mapper/AlbumsMapper";
-import { ArtistsMapper } from "../components/Artists/ArtistsMapper.tsx";
-import { PlaylistsMapper } from "../components/Playlists/PlaylistMapper";
-import Scroller from "../components/SearchResults/Scroller";
+import { AlbumsMapper } from "../components/Album/Mapper/AlbumsMapper.tsx";
+import { ArtistsMapper } from "../components/Artist/Mapper/ArtistsMapper.tsx";
+import { PlaylistsMapper } from "../components/Playlist/Mapper/PlaylistMapper.tsx";
+import { Scroller } from "../components/Scroller/Scroller.tsx";
 import { PageType } from "../enum/PageType.enum";
 
 export function SearchResultsPage() {

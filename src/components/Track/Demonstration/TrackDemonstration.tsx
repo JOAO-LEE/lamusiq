@@ -2,7 +2,7 @@ import { PageType } from "../../../enum/PageType.enum";
 import { Track,  } from "../../../model/Track/Track";
 import { formatAmericanDate } from "../../../utils/formatDate";
 import { getDuration } from "../../../utils/getDuration";
-import { Interpreters } from "../../Album/Interpreters/Interpreters";
+import { MediaInterpreters } from "../../Media/MediaInterpreters/MediaInterpreters";
 
 export function TrackDemonstration({ track, trackIndex, pageType }: { track: Track , trackIndex: number, pageType: PageType }) {
   console.log(track?.album?.images)
@@ -45,7 +45,7 @@ export function TrackDemonstration({ track, trackIndex, pageType }: { track: Tra
                   <span className="bg-zinc-300 text-zinc-800 text-xs h-min font-extralight w-3 text-center p-0.5">E</span>
                 )
             }
-            <Interpreters 
+            <MediaInterpreters 
             media={track}
             />
           </div>

@@ -1,6 +1,6 @@
 import ActionButtons from "../components/ActionButtons/ActionButtons"
 import AlbumSuggestions from "../components/Album/Suggestions/AlbumSuggestions"
-import PlaylistsSuggestions from "../components/PlaylistsSuggestions/PlaylistsSuggestions"
+import PlaylistsSuggestions from "../components/Playlist/PlaylistsSuggestions/PlaylistsSuggestions"
 
 export function HomePage() {  
   return (

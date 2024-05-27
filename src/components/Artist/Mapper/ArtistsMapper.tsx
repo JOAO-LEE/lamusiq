@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-import { Artist } from "../../model/Artist/Artist"
+import { Artist } from "../../../model/Artist/Artist"
 
 export function ArtistsMapper({ artists } : { artists: Array<Artist> }) {
   return (

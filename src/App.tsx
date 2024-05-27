@@ -7,7 +7,7 @@ import { SearchResultsPage } from './pages/SearchResultsPage';
 import { PlaylistPage } from './pages/PlaylistPage';
 import { AuthProvider } from './context/auth/AuthContext/AuthProvider';
 import { Routes, Route } from 'react-router-dom';
-import Layout from './shared/Layout';
+import Layout from './components/shared/Layout';
 import PrivateRoutes from './utils/PrivateRoutes';
 import './App.css';
 

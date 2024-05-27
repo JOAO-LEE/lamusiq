@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { Album } from "../../../model/Album/Album";
 import { Track } from "../../../model/Track/Track";
 
-export function Interpreters({ media }: { media: Album | Track  }) {
+export function MediaInterpreters({ media }: { media: Album | Track  }) {
   return (
     <>
       {

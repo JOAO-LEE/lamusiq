@@ -6,7 +6,7 @@ import { getPlaylistById } from "../services/Playlist/Playlist";
 import { LoadingSpinner } from "../components/Loading/LoadingSpinner";
 import { MediaHeader } from "../components/Media/MediaHeader/MediaHeader";
 import { PageType } from "../enum/PageType.enum";
-import { TrackMapper } from "../components/Tracks/Mapper/TrackMapper";
+import { TrackMapper } from "../components/Track/Mapper/TrackMapper";
 import { MediaMarkers } from "../components/Media/MediaMarkers/MediaMarkers";
 import { Track } from "../model/Track/Track";
 

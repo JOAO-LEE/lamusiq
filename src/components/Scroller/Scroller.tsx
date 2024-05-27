@@ -1,6 +1,6 @@
 import { ReactNode } from 'react'
 
-function Scroller({ title, children }: { title: string, children: ReactNode }) {
+export function Scroller({ title, children }: { title: string, children: ReactNode }) {
   return (
     <div className="rounded-md bg-zinc-900 p-6 border border-zinc-700">
       <h2 className="text-2xl font-bold">{title}</h2>
@@ -11,4 +11,3 @@ function Scroller({ title, children }: { title: string, children: ReactNode }) {
   )
 }
 
-export default Scroller

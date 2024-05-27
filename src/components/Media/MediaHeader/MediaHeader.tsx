@@ -1,7 +1,7 @@
 import { Album } from "../../../model/Album/Album";
 import { Playlist } from "../../../model/Playlist/Playlist";
 import { getYear } from "../../../utils/formatDate";
-import { Interpreters } from "../../Album/Interpreters/Interpreters";
+import { Interpreters } from "../MediaInterpreters/MediaInterpreters";
 import { isAlbum } from "../../../utils/typeOfMedia";
 
 export function MediaHeader({ media }: { media: Album | Playlist }) {

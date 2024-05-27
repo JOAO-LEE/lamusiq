@@ -1,7 +1,7 @@
 import { CircleX } from "lucide-react";
 import { FormEvent, useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { SearchContext } from "../../../../../../context/SearchContext/SearchContext";
+import { SearchContext } from "../../../../../../../context/SearchContext/SearchContext";
 
 function SearchForm() {
   const {handleSearch, isSearchOpen} = useContext(SearchContext)

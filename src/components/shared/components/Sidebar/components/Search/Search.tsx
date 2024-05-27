@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import SearchForm from "./SearchForm/SearchForm";
-import { SearchContext } from "../../../../../context/SearchContext/SearchContext";
+import { SearchContext } from "../../../../../../context/SearchContext/SearchContext";
 import { X } from "lucide-react";
 
 function Search() {

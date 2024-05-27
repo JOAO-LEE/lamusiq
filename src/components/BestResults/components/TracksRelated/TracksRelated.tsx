@@ -1,6 +1,6 @@
 import { PageType } from "../../../../enum/PageType.enum";
 import { SearchBestResults } from "../../../../model/Search/SearchResult";
-import { TrackDemonstration } from "../../../Tracks/Demonstration/TrackDemonstration";
+import { TrackDemonstration } from "../../../Track/Demonstration/TrackDemonstration";
 
 export function TracksRelated({ bestResults } : { bestResults: SearchBestResults }) {
   console.log(bestResults)
