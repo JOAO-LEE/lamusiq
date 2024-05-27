@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { authContext } from "./AuthContext";
 import supabase from "../../../config/supabaseConfig";
 import { Session, User } from "@supabase/supabase-js";
-import { getSpotifyToken } from "../../../services/spotify";
+import { getSpotifyToken } from "../../../services/Spotify/Spotify";
 import { SpotifyTokenResponse } from "../../../model/Spotify/SpotifyTokenResponse";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any

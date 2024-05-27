@@ -1,7 +1,7 @@
 import { Album } from "../../../model/Album/Album";
 import { Playlist } from "../../../model/Playlist/Playlist";
 import { getYear } from "../../../utils/formatDate";
-import { Interpreters } from "../MediaInterpreters/MediaInterpreters";
+import { MediaInterpreters } from "../MediaInterpreters/MediaInterpreters";
 import { isAlbum } from "../../../utils/typeOfMedia";
 
 export function MediaHeader({ media }: { media: Album | Playlist }) {
@@ -17,7 +17,7 @@ export function MediaHeader({ media }: { media: Album | Playlist }) {
       />
       <div className="flex flex-col justify-between p-3 gap-2">
       <p className="text-xs font-medium">{media?.type.replace(media?.type[0], media?.type[0].toUpperCase())}</p>
-        <h1 className="font-extrabold text-7xl  w-full line-clamp-1">{media?.name}</h1>
+        <h1 className="font-extrabold text-7xl w-full line-clamp-1">{media?.name}</h1>
         {
           !isAlbum(media) 
           && 
@@ -31,7 +31,9 @@ export function MediaHeader({ media }: { media: Album | Playlist }) {
             ?
               (
                 <>
-                  <Interpreters media={media} />
+                  <MediaInterpreters 
+                  media={media} 
+                  />
                   <span>•</span>
                   <span>{media?.release_date && getYear(media?.release_date)}</span>
                   <span>•</span>

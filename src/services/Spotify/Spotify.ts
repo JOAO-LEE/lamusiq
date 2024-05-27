@@ -1,5 +1,5 @@
-import { SpotifyTokenResponse } from "../model/Spotify/SpotifyTokenResponse";
-import { requestBody, requestBodyRefreshToken } from "../utils/fetchRelated";
+import { SpotifyTokenResponse } from "../../model/Spotify/SpotifyTokenResponse";
+import { requestBody, requestBodyRefreshToken } from "../../utils/fetchRelated";
 
 export const getSpotifyToken = async (): Promise<SpotifyTokenResponse> => {
   const response = await fetch("https://accounts.spotify.com/api/token", 
