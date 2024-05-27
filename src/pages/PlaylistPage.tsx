@@ -4,10 +4,10 @@ import { useEffect, useState } from "react";
 import { Playlist } from "../model/Playlist/Playlist";
 import { getPlaylistById } from "../services/Playlist/Playlist";
 import { LoadingSpinner } from "../components/Loading/LoadingSpinner";
-import { MediaHeader } from "../components/Album/Media/MediaHeader/MediaHeader";
+import { MediaHeader } from "../components/Media/MediaHeader/MediaHeader";
 import { PageType } from "../enum/PageType.enum";
 import { TrackMapper } from "../components/Tracks/Mapper/TrackMapper";
-import { MediaMarkers } from "../components/Album/Media/MediaMarkers/MediaMarkers";
+import { MediaMarkers } from "../components/Media/MediaMarkers/MediaMarkers";
 import { Track } from "../model/Track/Track";
 
 export function PlaylistPage() {
@@ -34,25 +34,8 @@ export function PlaylistPage() {
         setPlaylistTracks(treatedTracks);
         setLoadingPlaylistInfo(false);
       }
-
-        // const treatedTracks = foundPlaylist.tracks.items
-        //   .reduce((accTrack, currTrack, ) => {
-        //     accTrack.
-        // }, [])
-
-        // foundPlaylist.tracks.items.map(track =>)
-      //   const { tracks: { items }} = foundPlaylist;
-      //   // items?.map((track) => {
-      //   //   setPlaylistTracks)
-      //   // })
-      //   // setPlaylistTracks(items?.map());
-      //   // delete foundPlaylist['tracks']['items']
-      //   setPlaylist(foundPlaylist)
-      //   setLoadingPlaylistInfo(false);
-        // console.log(playlistTracks.)
     }
     
-
     if (param.id && auth?.spotifyToken?.access_token) {
       getPlaylistInfo(param.id, auth.spotifyToken.access_token)
     }
@@ -83,9 +66,11 @@ export function PlaylistPage() {
                         <MediaHeader 
                         media={playlist!}
                         />
-                        <div className="bg-zinc-950 p-4 h-full">
-                          <MediaMarkers />
-                          <div className="text-sm">
+                        <div className="bg-zinc-950 h-full">
+                          <MediaMarkers 
+                          pageType={PageType.PLAYLIST}
+                          />
+                          <div className="text-sm p-2">
                           {
                             !!playlistTracks?.length
                             &&

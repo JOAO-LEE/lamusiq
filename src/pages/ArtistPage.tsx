@@ -63,7 +63,7 @@ export function ArtistPage() {
                 <img 
                 src={artistInfo?.images[0]?.url} 
                 alt="" 
-                className="rounded-md object-fill brightness-75 hover:brightness-100 transition duration-500"
+                className="rounded-md object-fill brightness-75 hover:brightness-[0.3] transition duration-500"
                 />
                 <div className="flex flex-col absolute top-96 w-full">
                   <div className="flex flex-col backdrop-blur-2xl w-full">

@@ -1,14 +1,15 @@
 import { PageType } from "../../../enum/PageType.enum";
 import { Track,  } from "../../../model/Track/Track";
+import { formatAmericanDate } from "../../../utils/formatDate";
 import { getDuration } from "../../../utils/getDuration";
 import { Interpreters } from "../../Album/Interpreters/Interpreters";
 
 export function TrackDemonstration({ track, trackIndex, pageType }: { track: Track , trackIndex: number, pageType: PageType }) {
-  // console.log(track)
+  console.log(track?.album?.images)
   return (
-    <div className="flex justify-between text-zinc-300 items-center">
-      <div className="flex gap-4 p-2">
-        <div className="flex p-4 items-center w-5 justify-center">
+    <div className="flex items-center justify-between text-zinc-300 rounded-lg hover:bg-zinc-800 p-2">
+      <div className={`flex gap-4 items-center ${pageType !== PageType.SEARCH && "w-1/4"}`}>
+        <div className="flex items-center w-5 justify-center">
           <div>
             <p className="text-lg">
               {
@@ -16,29 +17,27 @@ export function TrackDemonstration({ track, trackIndex, pageType }: { track: Tra
                 ? 
                 track.track_number
                 :
-
                 trackIndex + 1
               }
             </p>
           </div>
         </div> 
-        {/* {
-          showImage 
+        {
+          pageType !== PageType.ALBUM 
           && 
             (
               <img 
-              src={track?.images[0]?.url ?? ""} 
+              src={track?.album?.images[0]?.url ?? ""} 
               height={track?.album?.images[0].height} 
               width={track?.album?.images[0].width} 
               className="size-10 rounded"
               />
             )
-        } */}
+        } 
         <div className="flex flex-col gap-1">
           <span>{track?.name}</span>
           <div className="flex items-end gap-2">
             {
-
               track.explicit
               &&
 
@@ -52,16 +51,34 @@ export function TrackDemonstration({ track, trackIndex, pageType }: { track: Tra
           </div>
         </div>
       </div>
+      <>
+        {
+          !!(pageType === PageType.PLAYLIST)
+          &&
+            (
+              <div className="w-1/4">
+                <p>{track.album.name}</p>
+              </div>
+            )
+        }
+      </>
+      <>
+        {
+          !!((pageType === PageType.PLAYLIST) && track.added_at)
+          &&
+            (
+              <div className="w-1/4">
+                <p>{formatAmericanDate(track.added_at)}</p>
+              </div>
+            )
+        }
+      </>
       {
-        <span className="text-zinc-100">{getDuration(track?.duration_ms)}</span>
+        <span 
+        className="text-zinc-100">
+          {getDuration(track?.duration_ms)}
+        </span>
       }
     </div>
   )
 }
-// {
-//   artistsToShow.map((artist, index) => (
-//     <p key={index} className="">
-//       {artist.name}{index < (artistsToShow.length - 1) ? <span>,&nbsp;</span> : <span>{track.artists.length > artistsToShow.length && "..."}</span>}
-//     </p>
-//   ))
-// }

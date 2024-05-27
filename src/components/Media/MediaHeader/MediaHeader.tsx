@@ -1,8 +1,8 @@
-import { Album } from "../../../../model/Album/Album";
-import { Playlist } from "../../../../model/Playlist/Playlist";
-import { getYear } from "../../../../utils/formatDate";
-import { Interpreters } from "../../Interpreters/Interpreters";
-import { isAlbum } from "../../../../utils/typeOfMedia";
+import { Album } from "../../../model/Album/Album";
+import { Playlist } from "../../../model/Playlist/Playlist";
+import { getYear } from "../../../utils/formatDate";
+import { Interpreters } from "../../Album/Interpreters/Interpreters";
+import { isAlbum } from "../../../utils/typeOfMedia";
 
 export function MediaHeader({ media }: { media: Album | Playlist }) {
 

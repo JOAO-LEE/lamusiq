@@ -11,7 +11,7 @@ export function TrackMapper({ tracks, pageType }: { tracks: Array<Track>, pageTy
 
   useEffect(() => {
     if (tracks) {
-      setMaxTracks(tracks.slice(0, MAX_TRACKS))
+      setMaxTracks(tracks.slice(0, MAX_TRACKS));
     }
 
   }, []);
@@ -26,36 +26,36 @@ export function TrackMapper({ tracks, pageType }: { tracks: Array<Track>, pageTy
               {
                 showAllTracks 
                 ?
-                (
-                  <>
-                    {
+                  (
+                    <>
+                      {
 
-                      tracks.map((track, index) =>  (
-                        <TrackDemonstration
-                        pageType={pageType}
-                        trackIndex={index}
-                        track={track} 
-                        key={index}
-                        />
-                      ))
-                    }
-                  </>
-                )
-              : 
-                (
-                  <>
-                    {
-                      maxTracks?.map((track, index) => (
-                        <TrackDemonstration
-                        pageType={pageType}
-                        trackIndex={index}
-                        track={track} 
-                        key={index}
-                        />
-                      ))
-                    }
-                  </>
-                )
+                        tracks.map((track, index) =>  (
+                          <TrackDemonstration
+                          pageType={pageType}
+                          trackIndex={index}
+                          track={track} 
+                          key={index}
+                          />
+                        ))
+                      }
+                    </>
+                  )
+                : 
+                  (
+                    <>
+                      {
+                        maxTracks?.map((track, index) => (
+                          <TrackDemonstration
+                          pageType={pageType}
+                          trackIndex={index}
+                          track={track} 
+                          key={index}
+                          />
+                        ))
+                      }
+                    </>
+                  )
               }
               {
                 tracks.length > maxTracks?.length
@@ -70,9 +70,3 @@ export function TrackMapper({ tracks, pageType }: { tracks: Array<Track>, pageTy
     </>
   )
 }
-
-// {
-//   isArrayTrackFromPlaylist(tracks) 
-//   ?
-
-// }

@@ -5,8 +5,8 @@ import { getAlbumById, getAlbumTracks } from "../services/Album/Album";
 import { Album as AlbumDTO} from '../model/Album/Album'
 import { Track } from "../model/Track/Track";
 import { getYear } from "../utils/formatDate";
-import { MediaHeader } from "../components/Album/Media/MediaHeader/MediaHeader";
-import { MediaMarkers } from "../components/Album/Media/MediaMarkers/MediaMarkers";
+import { MediaHeader } from "../components/Media/MediaHeader/MediaHeader";
+import { MediaMarkers } from "../components/Media/MediaMarkers/MediaMarkers";
 import { TrackMapper } from "../components/Tracks/Mapper/TrackMapper";
 import { PageType } from "../enum/PageType.enum";
 import { MoreOf } from "../components/MoreOf/MoreOf";

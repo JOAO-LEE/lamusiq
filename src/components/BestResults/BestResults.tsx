@@ -1,31 +1,21 @@
 import { useState, useEffect } from "react";
 import { SearchBestResults, SearchResults } from "../../model/Search/SearchResult";
-import { TracksTreatedResult } from "../../model/Track/Track";
-import ArtistRelated from "./components/ArtistRelated";
-import TracksRelated from "./components/TracksRelated";
+import { ArtistRelated } from "./components/ArtistRelated/ArtistRelated";
+import { TracksRelated } from "./components/TracksRelated/TracksRelated";
 
-function BestResults({ searchResults }: { searchResults: SearchResults }) {
+export function BestResults({ searchResults }: { searchResults: SearchResults }) {
   const [bestResults, setBestResults] = useState<SearchBestResults>();
   
   useEffect(() => {
-    if (searchResults) {
-      const tracks: TracksTreatedResult[] = searchResults.tracks.items.map(track => {
-        return {
-          album: {
-            images: track?.album?.images ?? [],
-          },
-          explicit: track.explicit,
-          duration_ms: track.duration_ms,
-          name: track.name,
-          artist: track.artists[0].name
-        }
-      });
+    const { artists, tracks } = searchResults;
+    if (artists.items?.length && tracks.items?.length) {
+      
       setBestResults( 
         { 
-          image: searchResults?.artists?.items[0]?.images[0]?.url, 
-          name: searchResults?.artists?.items[0].name, 
-          type: `${searchResults?.artists?.items[0].type[0].toUpperCase()}${searchResults.artists.items[0].type.slice(1)}`,
-          tracks: tracks.slice(0, 4)
+          image: artists.items[0].images[0].url, 
+          name: artists?.items[0].name, 
+          type: `${artists.items[0].type[0].toUpperCase()}${artists.items[0].type.slice(1)}`,
+          tracks: tracks?.items?.slice(0, 4) ?? []
         }
       );  
     }  
@@ -38,16 +28,20 @@ function BestResults({ searchResults }: { searchResults: SearchResults }) {
         ?
           ( 
             <>
-              <ArtistRelated bestResults={bestResults}/>
-              <TracksRelated bestResults={bestResults}/>
+              <ArtistRelated 
+              bestResults={bestResults}
+              />
+              <TracksRelated 
+              bestResults={bestResults}
+              />
             </>
           )
         :
-        <>
-        </>   
+          (
+            <>
+            </>   
+          )
       }
     </div>
   )
 }
-
-export default BestResults

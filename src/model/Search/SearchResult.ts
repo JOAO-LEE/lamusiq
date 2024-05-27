@@ -1,14 +1,14 @@
 import { Album } from "../Album/Album";
 import { Artist } from "../Artist/Artist";
 import { Playlist } from "../Playlist/Playlist";
-import { Track, TracksTreatedResult } from "../Track/Track";
+import { Track } from "../Track/Track";
 import { CommonSearchResponse } from "../common/Common";
 
 export interface SearchBestResults {
   image: string, 
   name: string, 
   type: string, 
-  tracks: Array<TracksTreatedResult>
+  tracks: Array<Track>
 }
 
 export interface SearchResults {
@@ -20,3 +20,8 @@ export interface SearchResults {
   shows: CommonSearchResponse<Album>
   tracks: CommonSearchResponse<Track>
 }
+
+// export interface SearchResultFetch {
+//   result: SearchResults
+//   loading: boolean
+// }
