@@ -7,8 +7,13 @@ export function MediaInterpreters({ media }: { media: Album | Track  }) {
     <>
       {
         media.artists.map((artist, index) => (
-          <p key={index} className="hover:underline hover:text-zinc-200 transition-all font-light">
-            <Link to={`/artist/${artist.id}`}>{artist?.name.trim()}</Link>{media?.artists?.length - 1 !== index && <span>,</span>}
+          <p 
+          key={index} 
+          className="hover:underline hover:text-zinc-200 transition-all font-light text-xs">
+            <Link 
+            to={`/artist/${artist.id}`}>
+              {artist?.name.trim()}
+            </Link>{media?.artists?.length - 1 !== index && <span>,</span>}
           </p>
         )) 
       }

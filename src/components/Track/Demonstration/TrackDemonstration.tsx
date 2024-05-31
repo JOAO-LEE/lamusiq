@@ -1,42 +1,65 @@
+import { useContext } from "react";
 import { PageType } from "../../../enum/PageType.enum";
 import { Track,  } from "../../../model/Track/Track";
 import { formatAmericanDate } from "../../../utils/formatDate";
 import { getDuration } from "../../../utils/getDuration";
 import { MediaInterpreters } from "../../Media/MediaInterpreters/MediaInterpreters";
+import { TrackNum } from "../components/TrackNum";
+import { TrackContext } from "../../../context/TrackContext/TrackContext";
+import { Pause, Play, TriangleAlert } from "lucide-react";
 
 export function TrackDemonstration({ track, trackIndex, pageType }: { track: Track , trackIndex: number, pageType: PageType }) {
-  console.log(track?.album?.images)
+  const { playTrack, track: trackPlaying } = useContext(TrackContext);
+
   return (
-    <div className="flex items-center justify-between text-zinc-300 rounded-lg hover:bg-zinc-800 p-2">
-      <div className={`flex gap-4 items-center ${pageType !== PageType.SEARCH && "w-1/4"}`}>
-        <div className="flex items-center w-5 justify-center">
-          <div>
-            <p className="text-lg">
-              {
-                pageType === PageType.ALBUM
-                ? 
-                track.track_number
-                :
-                trackIndex + 1
-              }
-            </p>
+    <div 
+    className="group flex gap-2 justify-between text-zinc-300 rounded-lg hover:bg-zinc-800 p-2"
+    onDoubleClick={() => playTrack(track)}
+    >
+      <div className={`flex gap-2 items-center w-60`}>
+        <div className="flex w-5 justify-center">
+          <div className="text-center">
+            <TrackNum 
+            pageType={pageType} 
+            trackIndex={trackIndex} 
+            trackNumber={track.track_number}
+            />
           </div>
         </div> 
         {
-          pageType !== PageType.ALBUM 
+          pageType !== PageType.ALBUM
           && 
             (
-              <img 
-              src={track?.album?.images[0]?.url ?? ""} 
-              height={track?.album?.images[0].height} 
-              width={track?.album?.images[0].width} 
-              className="size-10 rounded"
-              />
+              <div className="relative">
+                <img 
+                src={track?.album?.images[0]?.url ?? ""}
+                className="group max-w-10"
+                />
+                {
+                  trackPlaying?.id === track.id
+                  ?
+                    (
+                      <Pause
+                      size={"1rem"}
+                      className="absolute right-3 bottom-3" 
+                      fill="white"
+                      />
+                    )
+                  :
+                    (
+                      <Play 
+                      size={"1rem"}
+                      className="hidden group-hover:block absolute right-3 bottom-3" 
+                      fill="white"
+                      />
+                    )
+                }
+              </div>
             )
         } 
-        <div className="flex flex-col gap-1">
+        <div className="flex flex-col gap-1 truncate">
           <span>{track?.name}</span>
-          <div className="flex items-end gap-2">
+          <div className="flex items-end gap-2 text-nowrap">
             {
               track.explicit
               &&
@@ -50,6 +73,16 @@ export function TrackDemonstration({ track, trackIndex, pageType }: { track: Tra
             />
           </div>
         </div>
+        {
+          track.preview_url === null 
+          && 
+            (
+              <TriangleAlert 
+              size={15}
+              className="text-zinc-700" 
+              /> 
+            )
+        }
       </div>
       <>
         {

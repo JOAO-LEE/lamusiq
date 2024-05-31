@@ -6,7 +6,7 @@ export interface Track extends Item {
   duration_ms: number, 
   explicit: boolean, 
   artists: Array<Artist>, 
-  preview: string  
+  preview_url: string  
   album: Album
   images: ItemImages
   track_number: number

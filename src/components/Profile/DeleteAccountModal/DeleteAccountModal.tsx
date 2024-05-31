@@ -1,7 +1,9 @@
 
 function DeleteAccountModal() {
   return (
-    <div>DeleteAccountModal</div>
+    <dialog>
+      <p>oioioioioi</p>
+    </dialog>
   )
 }
 

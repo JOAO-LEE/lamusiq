@@ -25,7 +25,7 @@ export function MediaHeader({ media }: { media: Album | Playlist }) {
               <p className="text-xs">{media.description}</p>
             )
         }
-        <div className="flex text-xs gap-1.5 p-1">
+        <div className="flex text-xs items-center gap-1.5 p-1">
           {
             isAlbum(media)
             ?

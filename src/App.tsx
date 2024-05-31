@@ -10,25 +10,28 @@ import { Routes, Route } from 'react-router-dom';
 import Layout from './components/shared/Layout';
 import PrivateRoutes from './utils/PrivateRoutes';
 import './App.css';
+import { TrackProvider } from './context/TrackContext/TrackProvider';
 
 export default function App() {
   return (
     <AuthProvider>
-      <Routes>
-        <Route path="/sign-in" element={ <SignInPage /> } />
-          <Route path="/" element={ <PrivateRoutes /> }>
-            <Route element={ <Layout /> }>
-              <Route path="/" index element={ <HomePage /> } />
-              <Route path="/me" element={ <MePage /> }  />
-              <Route path="/search">
-                <Route path="results" element={ <SearchResultsPage /> } />
-              </Route>
-              <Route path="/artist/:id" element={ <ArtistPage /> } />
-              <Route path="/album/:id" element={ <AlbumPage /> } />
-              <Route path="/playlist/:id" element={ <PlaylistPage /> } />
+      <TrackProvider>
+        <Routes>
+          <Route path="/sign-in" element={ <SignInPage /> } />
+            <Route path="/" element={ <PrivateRoutes /> }>
+                <Route element={ <Layout /> }>
+                  <Route path="/" index element={ <HomePage /> } />
+                  <Route path="/me" element={ <MePage /> }  />
+                  <Route path="/search">
+                    <Route path="results" element={ <SearchResultsPage /> } />
+                  </Route>
+                  <Route path="/artist/:id" element={ <ArtistPage /> } />
+                  <Route path="/album/:id" element={ <AlbumPage /> } />
+                  <Route path="/playlist/:id" element={ <PlaylistPage /> } />
+                </Route>
           </Route>
-        </Route>
-      </Routes>
+        </Routes>
+      </TrackProvider>
     </AuthProvider>
   )
 }

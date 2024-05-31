@@ -79,13 +79,11 @@ export function SearchResultsPage() {
         :
           (
             <section className="flex flex-col mx-auto w-[24rem] sm:min-w-[32rem] md:w-[40rem] lg:w-[44rem] xl:w-[60rem] 2xl:w-[80rem] mb-32">
-            <div className="flex flex-col gap-3 p-1 mt-2 justify-center">
+            <div className="flex flex-col gap-3 p-1 mt-2 justify-center" >
               <h1 className="text-3xl text-zinc-50">See the results for "<span className="text-green-400">{searchParams[0].get('q')}</span>":</h1>
               <BestResults 
               searchResults={searchResults!}
               />
-                  
-            
               {
                 !!searchResults?.artists?.items?.length
                 &&

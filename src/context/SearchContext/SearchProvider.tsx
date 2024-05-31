@@ -9,7 +9,9 @@ export function SearchProvider({children}: {children: ReactNode}) {
   };
 
   return (
-    <SearchContext.Provider value={{isSearchOpen, handleSearch}}>
+    <SearchContext.Provider 
+    value={{isSearchOpen, handleSearch}}
+    >
       {children}
     </SearchContext.Provider>
   )
