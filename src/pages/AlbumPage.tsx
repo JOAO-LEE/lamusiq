@@ -61,7 +61,9 @@ export function AlbumPage() {
                   media={album!}
                   />
                   <div className="bg-zinc-950 p-4 h-full">
-                    <MediaMarkers />
+                    <MediaMarkers
+                    tracks={albumTracks}
+                    />
                     <div className="text-sm">
                     {
                       albumTracks?.length

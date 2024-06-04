@@ -1,13 +1,12 @@
-import { RefObject, SetStateAction } from "react";
+import { RefObject } from "react";
 import { Track } from "../Track/Track";
 
 export interface TrackContext {
   track: Track
   playTrack: (track: Track) => void
-  togglePlay: (playerRef: RefObject<HTMLAudioElement>) => void
+  togglePlay: () => void
   isPlaying: boolean
-  player: {
-    audioPlayer: RefObject<HTMLAudioElement> | null
-    setAudioPlayer: React.Dispatch<SetStateAction<RefObject<HTMLAudioElement> | null>>
-  }
+  audioPlayerRef: RefObject<HTMLAudioElement>
+  currentTime: number
+  duration: number
 }

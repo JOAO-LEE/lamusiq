@@ -50,7 +50,6 @@ export const AuthProvider = ({ children }: any) => {
     });
     
     setData();
-    console.log('calling function')
     
     return () => {
       subscription.unsubscribe();

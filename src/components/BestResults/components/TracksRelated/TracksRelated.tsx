@@ -3,7 +3,6 @@ import { SearchBestResults } from "../../../../model/Search/SearchResult";
 import { TrackDemonstration } from "../../../Track/Demonstration/TrackDemonstration";
 
 export function TracksRelated({ bestResults } : { bestResults: SearchBestResults }) {
-  console.log(bestResults)
   return (
     <div className="col-span-2 p-3">
       <h2 className="text-2xl font-medium">Tracks</h2>
