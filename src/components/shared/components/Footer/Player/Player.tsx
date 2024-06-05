@@ -5,18 +5,9 @@ import "../../../../../styles/progressBar.css";
 import { calculateDuration } from "../../../../../utils/calculateDuration";
 
 export default function Player() {
-  const { track, togglePlay, isPlaying, duration, audioPlayerRef } = useContext(TrackContext);
-  HTMLFormControlsCollection.lo
+  const { track, togglePlay, isPlaying, duration, audioPlayerRef, changeRange, progressBar } = useContext(TrackContext);
 
   useEffect(() => {
-    // if (audioPlayerRef.current) {
-    //   audioPlayerRef.current.onloadedmetadata = () => {
-        
-    //   };
-    //   audioPlayerRef.current.ontimeupdate = () => {
-       
-    //   };
-    // }
   }, [audioPlayerRef]);
 
   return (
@@ -57,11 +48,14 @@ export default function Player() {
         (track !== null)
         && 
           (
-            <div className="flex justify-between items-center gap-2 w-full relative">
-              <p>{calculateDuration(audioPlayerRef.current!.currentTime)}</p>
+            <div className="flex justify-between items-center gap-2 relative">
+              <p>{calculateDuration(audioPlayerRef.current?.currentTime ?? 0)}</p>
               <input 
               type="range" 
               className="progress-bar"
+              defaultValue="0"
+              onChange={changeRange}
+              ref={progressBar}
               />
               <p>{calculateDuration(duration)}</p>
             </div>

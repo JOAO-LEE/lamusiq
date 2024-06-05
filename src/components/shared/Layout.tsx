@@ -2,8 +2,11 @@ import Sidebar from './components/Sidebar/Sidebar';
 import Footer from './components/Footer/Footer';
 import { Outlet } from 'react-router-dom';
 import { SearchProvider } from '../../context/SearchContext/SearchProvider';
+import { useContext } from 'react';
+import { TrackContext } from '../../context/TrackContext/TrackContext';
 
 function Layout() {
+  const {track} = useContext(TrackContext);
   return (
     <SearchProvider>
       <div className="h-dvh flex flex-col">
@@ -15,7 +18,13 @@ function Layout() {
             <Outlet />
           </main>
         </div>
-        <Footer />
+        {
+          track 
+          &&  
+            (
+              <Footer />
+            )
+        }
       </div>
     </SearchProvider>
   )

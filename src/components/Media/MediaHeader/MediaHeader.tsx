@@ -45,8 +45,16 @@ export function MediaHeader({ media }: { media: Album | Playlist }) {
                 <>
                   <p className="font-extrabold">{media?.owner?.display_name}</p>
                   <span>•</span>
-                  <p className="font-medium">{media?.followers?.total?.toLocaleString('en-US')} {media?.followers?.total > 1 ? "likes" : "like"}</p>
-                  <span>•</span>
+                  {
+                    media.followers.total !== 0
+                    &&
+                      (
+                        <>
+                          <p className="font-medium">{media?.followers?.total?.toLocaleString('en-US')} {media?.followers?.total > 1 ? "likes" : "like"}</p>
+                          <span>•</span>
+                        </>
+                      )
+                  }
                   <p className="font-medium">{media?.tracks?.total} tracks</p>
                 </>
               )    

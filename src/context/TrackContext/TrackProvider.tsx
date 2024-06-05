@@ -4,6 +4,8 @@ import { Track } from "../../model/Track/Track";
 
 export function TrackProvider({ children }: { children: ReactNode }) {
   const audioPlayerRef = useRef<HTMLAudioElement>(null);
+  const progressBarRef = useRef<HTMLInputElement>(null);
+  const animationRef = useRef<number | null>();
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
   const [track, setTrack] = useState<Track | null >(null);
   const [duration, setDuration] = useState<number>(0);
@@ -12,30 +14,21 @@ export function TrackProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     const audioPlayer = audioPlayerRef.current;
+    const progressBar = progressBarRef.current;
     
-    if (audioPlayer) {
-      console.log("tem audio")
-      // const updateDuration = () => setDuration(Math.floor(audioPlayer.duration));
-     
-      audioPlayer.onloadedmetadata = () => {
-        console.log('oi')
-        setDuration(Math.floor(audioPlayer.duration))
-      };
+    if (audioPlayer && progressBar) {
+      const seconds = Math.floor(audioPlayer.duration)
+      progressBar.max = seconds.toString();
+      console.log(progressBar.max)
+      setDuration(seconds);
     }
 
-  }, [])
+  }, [audioPlayerRef]);
 
   useEffect(() => {
     const audioPlayer = audioPlayerRef.current;
     
     if (audioPlayer) {
-      console.log("tem audio")
-      // const updateDuration = () => setDuration(Math.floor(audioPlayer.duration));
-     
-      // audioPlayer.onloadedmetadata = () => {
-      //   console.log('oi')
-      //   // setDuration(Math.floor(audioPlayer.duration))
-      // };
       audioPlayer.ontimeupdate = () => {
         setCurrentTime(Math.floor(audioPlayer.currentTime));
       };
@@ -49,22 +42,24 @@ export function TrackProvider({ children }: { children: ReactNode }) {
 
     if (!isPlaying) {
     const playPromise = audioPlayerRef?.current?.play();
+    animationRef.current = requestAnimationFrame(whilePlaying)
 
     if (playPromise !== undefined) {
       playPromise.then(() => {
-        // const prevValue = isPlaying;
         setIsPlaying(true);
       });
     }
 
   } else {
-    // const prevValue = isPlaying;
     setIsPlaying(false);
     audioPlayerRef?.current?.pause();
+    cancelAnimationFrame(animationRef.current!)
   }
 }
 
 const playTrack = (selectedTrack: Track): void => {
+  if (!selectedTrack.preview_url) return;
+
   if (track?.id !== selectedTrack.id) {
     setIsPlaying(false);
     setTrack(selectedTrack);
@@ -72,9 +67,8 @@ const playTrack = (selectedTrack: Track): void => {
     const audioPlayer = audioPlayerRef.current;
     if (audioPlayer) {
       audioPlayer.pause();
-      audioPlayer.src = selectedTrack.preview_url || ""; // Garantir que o src seja atualizado
+      audioPlayer.src = selectedTrack.preview_url || "";
       audioPlayer.load();
-      // setDuration(Math.floor(audioPlayer.duration))
       audioPlayer.onloadeddata = () => {
 
         const playPromise = audioPlayer.play();
@@ -90,6 +84,32 @@ const playTrack = (selectedTrack: Track): void => {
   }
 };
 
+const changeRange = () => {
+  if (audioPlayerRef.current && progressBarRef.current) {
+    const progressBarValueNum = +progressBarRef.current.value
+    audioPlayerRef.current.currentTime = progressBarValueNum;
+    const value = (progressBarValueNum / duration * 100);
+    progressBarRef.current.style.setProperty('--seek-before-width', `${value}%`);
+    setCurrentTime(progressBarValueNum);
+  }
+};
+
+
+const whilePlaying = () => {
+  const progressBar = progressBarRef.current;
+  const audioPlayer = audioPlayerRef.current;
+
+  if (progressBar && audioPlayer) {
+    progressBar.value = audioPlayer.currentTime.toString();
+    const progressBarValueNum = +progressBarRef.current.value
+    const value = (progressBarValueNum / duration * 100);
+    progressBarRef.current.style.setProperty('--seek-before-width', `${value}%`);
+    setCurrentTime(progressBarValueNum);
+    animationRef.current = requestAnimationFrame(whilePlaying)
+
+  }
+};
+
   return (
     <TrackContext.Provider 
     value={{
@@ -99,7 +119,9 @@ const playTrack = (selectedTrack: Track): void => {
       isPlaying,
       duration,
       currentTime, 
-      audioPlayerRef
+      audioPlayerRef,
+      progressBar: progressBarRef,
+      changeRange,
     }}
     >
       {children}

@@ -7,17 +7,18 @@ import { MediaInterpreters } from "../../Media/MediaInterpreters/MediaInterprete
 import { TrackNum } from "../components/TrackNum";
 import { TrackContext } from "../../../context/TrackContext/TrackContext";
 import { Pause, Play, TriangleAlert } from "lucide-react";
+import { ToolTip } from "../../Tooltips/ToolTip";
 
 export function TrackDemonstration({ track, trackIndex, pageType }: { track: Track , trackIndex: number, pageType: PageType }) {
   const { playTrack, track: trackPlaying } = useContext(TrackContext);
 
   return (
     <div 
-    className="group flex gap-2 justify-between text-zinc-300 rounded-lg hover:bg-zinc-800 p-2"
+    className="group flex gap-2 justify-between items-center text-zinc-300 rounded-lg hover:bg-zinc-800 p-2 cursor-pointer"
     onDoubleClick={() => playTrack(track)}
     >
-      <div className={`flex gap-2 items-center w-60`}>
-        <div className="flex w-5 justify-center">
+      <div className={`flex gap-2 items-center`}>
+        <div className="flex w-5">
           <div className="text-center">
             <TrackNum 
             pageType={pageType} 
@@ -77,10 +78,12 @@ export function TrackDemonstration({ track, trackIndex, pageType }: { track: Tra
           track.preview_url === null 
           && 
             (
-              <TriangleAlert 
-              size={15}
-              className="text-zinc-700" 
-              /> 
+              <ToolTip information="No preview available.">
+                <TriangleAlert 
+                size={15}
+                className="text-zinc-700 group-hover:text-yellow-400" 
+                /> 
+              </ToolTip>
             )
         }
       </div>
