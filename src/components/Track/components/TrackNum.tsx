@@ -8,7 +8,7 @@ export function TrackNum({ pageType, trackNumber, trackIndex }: {pageType: PageT
       )
     case PageType.PLAYLIST || PageType.ARTIST:
       return (
-        <p className="text-lg">{trackIndex + 1}</p>
+        <p className="text-sm md:text-lg">{trackIndex + 1}</p>
       )
       case PageType.ARTIST:
         return (

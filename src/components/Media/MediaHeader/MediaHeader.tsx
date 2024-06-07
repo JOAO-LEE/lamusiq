@@ -15,14 +15,18 @@ export function MediaHeader({ media }: { media: Album | Playlist }) {
       width={media?.images[0]?.width} 
       className="object-contain w-36" 
       />
-      <div className="flex flex-col justify-between p-3 gap-2">
-      <p className="text-xs font-medium">{media?.type.replace(media?.type[0], media?.type[0].toUpperCase())}</p>
-        <h1 className="font-extrabold text-7xl w-full line-clamp-1">{media?.name}</h1>
+      <div className="flex flex-col justify-between p-3 gap-2 truncate">
+        <p className="text-xs font-medium">{media?.type.replace(media?.type[0], media?.type[0].toUpperCase())}</p>
+        <h1 className="font-extrabold text-xl sm:text-3xl lg:text-4xl xl:text-5xl 2xl:text-7xl">{media?.name}</h1>
         {
           !isAlbum(media) 
-          && 
+          ? 
             (
               <p className="text-xs">{media.description}</p>
+            )
+          :
+            (
+              <></>
             )
         }
         <div className="flex text-xs items-center gap-1.5 p-1">

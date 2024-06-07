@@ -2,7 +2,8 @@ import { Link } from "react-router-dom";
 import { Album } from "../../../model/Album/Album";
 import { Track } from "../../../model/Track/Track";
 
-export function MediaInterpreters({ media }: { media: Album | Track  }) {
+export function MediaInterpreters({ media }: { media: Album | Track }) {
+  
   return (
     <>
       {
@@ -13,7 +14,7 @@ export function MediaInterpreters({ media }: { media: Album | Track  }) {
             <Link 
             to={`/artist/${artist.id}`}>
               {artist?.name.trim()}
-            </Link>{media?.artists?.length - 1 !== index && <span>,</span>}
+            </Link>{media?.artists?.length - 1 !== index && <span>,&nbsp;</span>}
           </p>
         )) 
       }

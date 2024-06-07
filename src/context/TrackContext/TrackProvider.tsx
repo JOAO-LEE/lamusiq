@@ -19,10 +19,8 @@ export function TrackProvider({ children }: { children: ReactNode }) {
     if (audioPlayer && progressBar) {
       const seconds = Math.floor(audioPlayer.duration)
       progressBar.max = seconds.toString();
-      console.log(progressBar.max)
       setDuration(seconds);
     }
-
   }, [audioPlayerRef]);
 
   useEffect(() => {
@@ -38,76 +36,72 @@ export function TrackProvider({ children }: { children: ReactNode }) {
 
   const togglePlay = () => {
 
-    if (!track) return;
+  //   if (!track) return;
 
-    if (!isPlaying) {
-    const playPromise = audioPlayerRef?.current?.play();
-    animationRef.current = requestAnimationFrame(whilePlaying)
+  //   if (!isPlaying) {
+  //     const playPromise = audioPlayerRef?.current?.play();
+  //     animationRef.current = requestAnimationFrame(whilePlaying)
 
-    if (playPromise !== undefined) {
-      playPromise.then(() => {
-        setIsPlaying(true);
-      });
-    }
-
-  } else {
-    setIsPlaying(false);
-    audioPlayerRef?.current?.pause();
-    cancelAnimationFrame(animationRef.current!)
-  }
+  //     if (playPromise !== undefined) {
+  //       playPromise.then(() => {
+  //         setIsPlaying(true);
+  //       });
+  //     }
+  // } else {
+  //   setIsPlaying(false);
+  //   audioPlayerRef?.current?.pause();
+  //   cancelAnimationFrame(animationRef.current!);
+  // }
 }
 
 const playTrack = (selectedTrack: Track): void => {
-  if (!selectedTrack.preview_url) return;
+  // if (!selectedTrack.preview_url) return;
 
-  if (track?.id !== selectedTrack.id) {
-    setIsPlaying(false);
-    setTrack(selectedTrack);
+  // if (track?.id !== selectedTrack.id) {
+  //   setIsPlaying(false);
+  //   setTrack(selectedTrack);
 
-    const audioPlayer = audioPlayerRef.current;
-    if (audioPlayer) {
-      audioPlayer.pause();
-      audioPlayer.src = selectedTrack.preview_url || "";
-      audioPlayer.load();
-      audioPlayer.onloadeddata = () => {
-
-        const playPromise = audioPlayer.play();
-        if (playPromise !== undefined) {
-          playPromise.then(() => {
-            setIsPlaying(true);
-          }).catch(error => console.error(error));
-        }
-      };
-    }
-  } else {
-    togglePlay();
-  }
+  //   const audioPlayer = audioPlayerRef.current;
+  //   if (audioPlayer) {
+  //     audioPlayer.pause();
+  //     audioPlayer.src = selectedTrack.preview_url || "";
+  //     audioPlayer.load();
+  //     audioPlayer.onloadeddata = () => {
+  //       const playPromise = audioPlayer.play();
+  //       if (playPromise !== undefined) {
+  //         playPromise.then(() => {
+  //           setIsPlaying(true);
+  //         }).catch(error => console.error(error));
+  //       }
+  //     };
+  //   }
+  // } else {
+  //   // togglePlay();
+  // }
 };
 
 const changeRange = () => {
-  if (audioPlayerRef.current && progressBarRef.current) {
-    const progressBarValueNum = +progressBarRef.current.value
-    audioPlayerRef.current.currentTime = progressBarValueNum;
-    const value = (progressBarValueNum / duration * 100);
-    progressBarRef.current.style.setProperty('--seek-before-width', `${value}%`);
-    setCurrentTime(progressBarValueNum);
-  }
+  // if (audioPlayerRef.current && progressBarRef.current) {
+  //   const progressBarValueNum = +progressBarRef.current.value;
+  //   audioPlayerRef.current.currentTime = progressBarValueNum;
+  //   const value = (progressBarValueNum / duration * 100);
+  //   progressBarRef.current.style.setProperty('--seek-before-width', `${value}%`);
+  //   setCurrentTime(progressBarValueNum);
+  // }
 };
 
-
 const whilePlaying = () => {
-  const progressBar = progressBarRef.current;
-  const audioPlayer = audioPlayerRef.current;
+  // const progressBar = progressBarRef.current;
+  // const audioPlayer = audioPlayerRef.current;
 
-  if (progressBar && audioPlayer) {
-    progressBar.value = audioPlayer.currentTime.toString();
-    const progressBarValueNum = +progressBarRef.current.value
-    const value = (progressBarValueNum / duration * 100);
-    progressBarRef.current.style.setProperty('--seek-before-width', `${value}%`);
-    setCurrentTime(progressBarValueNum);
-    animationRef.current = requestAnimationFrame(whilePlaying)
-
-  }
+  // if (progressBar && audioPlayer) {
+  //   progressBar.value = audioPlayer.currentTime.toString();
+  //   const progressBarValueNum = +progressBarRef.current.value;
+  //   const value = (progressBarValueNum / duration * 100);
+  //   progressBarRef.current.style.setProperty('--seek-before-width', `${value}%`);
+  //   setCurrentTime(progressBarValueNum);
+  //   animationRef.current = requestAnimationFrame(whilePlaying)
+  // }
 };
 
   return (

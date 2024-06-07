@@ -12,7 +12,7 @@ export function BestResults({ searchResults }: { searchResults: SearchResults })
       
       setBestResults( 
         { 
-          image: artists.items[0].images[0].url, 
+          image: artists.items[0].images[0]?.url, 
           name: artists?.items[0].name, 
           type: `${artists.items[0].type[0].toUpperCase()}${artists.items[0].type.slice(1)}`,
           tracks: tracks?.items?.slice(0, 4) ?? []

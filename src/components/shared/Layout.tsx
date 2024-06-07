@@ -14,7 +14,7 @@ function Layout() {
           <aside className="h-full bg-slate-950">
             <Sidebar />
           </aside>
-          <main className="flex-1 h-full ">
+          <main className="flex-1 h-full">
             <Outlet />
           </main>
         </div>

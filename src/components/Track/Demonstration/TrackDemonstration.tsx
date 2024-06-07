@@ -17,7 +17,7 @@ export function TrackDemonstration({ track, trackIndex, pageType }: { track: Tra
     className="group flex gap-2 justify-between items-center text-zinc-300 rounded-lg hover:bg-zinc-800 p-2 cursor-pointer"
     onDoubleClick={() => playTrack(track)}
     >
-      <div className={`flex gap-2 items-center`}>
+      <div className={`flex gap-2 items-center ${pageType === PageType.PLAYLIST && "w-60"}`}>
         <div className="flex w-5">
           <div className="text-center">
             <TrackNum 
@@ -58,21 +58,23 @@ export function TrackDemonstration({ track, trackIndex, pageType }: { track: Tra
               </div>
             )
         } 
-        <div className="flex flex-col gap-1 truncate">
-          <span>{track?.name}</span>
-          <div className="flex items-end gap-2 text-nowrap">
+        <div className="flex flex-col gap-1 p-1">
+          <span className="">{track?.name}</span>
+          <div className="flex gap-2 items-end text-nowrap">
             {
               track.explicit
               &&
 
                 (
-                  <span className="bg-zinc-300 text-zinc-800 text-xs h-min font-extralight w-3 text-center p-0.5">E</span>
+                  <span className="bg-zinc-300 text-zinc-800 text-xs h-min font-extralight w-3.5 text-center p-0.5 rounded">E</span>
                 )
             }
-            <MediaInterpreters 
-            media={track}
-            />
-          </div>
+            <div className="flex truncate">
+              <MediaInterpreters 
+              media={track}
+              />
+            </div>
+              </div>
         </div>
         {
           track.preview_url === null 
@@ -92,7 +94,7 @@ export function TrackDemonstration({ track, trackIndex, pageType }: { track: Tra
           !!(pageType === PageType.PLAYLIST)
           &&
             (
-              <div className="w-1/4">
+              <div className="hidden  md:inline w-1/4">
                 <p>{track.album.name}</p>
               </div>
             )
@@ -103,7 +105,7 @@ export function TrackDemonstration({ track, trackIndex, pageType }: { track: Tra
           !!((pageType === PageType.PLAYLIST) && track.added_at)
           &&
             (
-              <div className="w-1/4">
+              <div className="hidden  md:inline w-1/4">
                 <p>{formatAmericanDate(track.added_at)}</p>
               </div>
             )

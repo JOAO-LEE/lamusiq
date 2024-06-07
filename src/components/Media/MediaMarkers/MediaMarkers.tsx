@@ -28,10 +28,10 @@ export function MediaMarkers({ pageType, tracks } : { pageType?: PageType, track
         && 
           (
             <>
-              <div>
+            <div className="hidden md:inline">
                 <p>Album</p>
               </div>
-              <div>
+              <div className="hidden md:inline">
                 <p>Added at</p>
               </div>
             </>

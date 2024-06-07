@@ -55,18 +55,18 @@ export function PlaylistPage() {
               !!playlist !== undefined
               &&
                 (
-                  <section className="w-full text-zinc-300 h-min">
+                  <section className="w-full text-zinc-300 h-full">
                     <div className="flex flex-col gap-2 relative">
                       <img 
                       src={playlist?.images[0]?.url} 
                       alt=""
                       className="object-cover brightness-75" 
                       />
-                      <div className="flex flex-col absolute backdrop-blur-3xl  w-full h-full gap-2">
+                      <div className="flex flex-col absolute backdrop-blur-3xl w-full h-full gap-2">
                         <MediaHeader 
                         media={playlist!}
                         />
-                        <div className="bg-zinc-950 h-full">
+                        <div className="bg-zinc-950">
                           <MediaMarkers 
                           pageType={PageType.PLAYLIST}
                           />
